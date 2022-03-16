@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Script to run Calc-f4; this script has to be placed inside the same direct
+# Script to run Calc-f4; this script has to be placed inside the same directory as the input files
 # Previously collect all input filenames into a filelist (with the format "path/filename\n")
 
 # Options: -i "STRING" --> filelist name
