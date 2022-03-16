@@ -1,4 +1,4 @@
-
+#!/bin/bash
 
 #Script to generate the input files needed to run treemix
 
