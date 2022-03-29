@@ -13,7 +13,7 @@ prefix="pmau_treemix"
 
 # Now you can run the script for every "edge" you want
 
-par(mfrow=c(2,3))
+#par(mfrow=c(2,3))
 
 for(edge in 0:10){
 	plot_tree(cex=0.8,paste0(prefix,".",edge))
