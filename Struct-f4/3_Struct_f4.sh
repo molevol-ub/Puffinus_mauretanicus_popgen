@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Rscript to run Struct-f4 according to https://bitbucket.org/plibradosanz/structf4/src/master/
+# Bash script to run Struct-f4 according to https://bitbucket.org/plibradosanz/structf4/src/master/
 # Beware, this script can only be used if Struct-f4 runs with R-4
 # Send to either hercules11 or hercules 12
 
