@@ -29,6 +29,8 @@ for sample in ${samples[@]}
 
 # Run raxml-ng to build a tree
 # Check https://github.com/amkozlov/raxml-ng/wiki
-# Options: --all (runs bootstrap at the same time); --tree pars{x},rand{y} (specifies the number of starting trees); --bs-trees (nº trees simulated during bootstrap calculation)
+# Options: 	--all (runs bootstrap at the same time);
+#		--tree pars{x},rand{y} (specifies the number of starting trees);
+#		--bs-trees (nº trees simulated during bootstrap calculation)
 
 raxml-ng --all --msa $output --model K80 --outgroup CZA11 --tree pars{25},rand{25} --bs-trees 1000 --threads 1 --prefix /users-d3/jferrer/gizquierdo/TFG/mitogenome/haplotype_genealogy_graph/pmau/$DATASET
