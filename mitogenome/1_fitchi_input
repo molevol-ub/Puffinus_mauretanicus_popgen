@@ -1,0 +1,34 @@
+#!/bin/bash
+#$ -R y
+#$ -cwd
+
+# Script to first generate a multiple-sequence allignment and then build a tree using raxml-ng with your mitochondrial data
+
+source $HOME/.profile
+
+### Script to filter and refine vcfs ###
+MASTER=/users-d3/jferrer/pmau_popgen
+reference=/$MASTER/SNP_calling/reference/Pmau_mitogenome_200_15600.fasta
+raw_vcf=$MASTER/SNP_calling/mt_freebayes/tmp_mtDNA/Puffinus_mitogenome.vcf
+DATASET=Pyel_mtDNA
+WORKING_DIR=$MASTER/SNP_calling/mt_vcfs/wPP
+
+
+output=/users-d3/jferrer/gizquierdo/TFG/mitogenome/mtDNA_msa.fa
+input_vcf=/users-d3/jferrer/gizquierdo/TFG/mitogenome/def_vcfs/Pmau_mtDNA_SNP.maxmiss100.filtered.nomono.recode.vcf
+
+## Prepare a msa in fasta format to build the tree
+bgzip $input_vcf
+tabix $input_vcf.gz
+
+samples=($(zcat $input_vcf.gz | grep -v "^##" | grep "^#" | cut -f10- | tr '\t' '\n'))
+
+for sample in ${samples[@]}
+	do cat $reference | bcftools consensus -s $sample $input_vcf.gz | sed -E "s/^>.*/>$sample/" >> $output
+	done
+
+# Run raxml-ng to build a tree
+# Check https://github.com/amkozlov/raxml-ng/wiki
+# Options: --all (runs bootstrap at the same time); --tree pars{x},rand{y} (specifies the number of starting trees); --bs-trees (nº trees simulated during bootstrap calculation)
+
+raxml-ng --all --msa $output --model K80 --outgroup CZA11 --tree pars{25},rand{25} --bs-trees 1000 --threads 1 --prefix /users-d3/jferrer/gizquierdo/TFG/mitogenome/haplotype_genealogy_graph/pmau/$DATASET
