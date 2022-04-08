@@ -14,3 +14,13 @@ vcftools --gzvcf $vcf --out $work_dir/Puffinus_mtDNA_SNP.maxmiss80.filtered.nomo
 
 bgzip $work_dir/Puffinus_mtDNA_SNP.maxmiss80.filtered.nomono.def.vcf
 tabix $work_dir/Puffinus_mtDNA_SNP.maxmiss80.filtered.nomono.def.vcf.gz 
+
+#---------------------------------------------------------------------------------------------------------------------------------------
+
+# Also use this to run a PCA inside your plink directory
+
+mkdir ../plink_directory
+cd ../plink_directory
+VCF=/users-d3/jferrer/pmau_popgen/SNP_calling/mt_vcfs/noPP/Puffinus_mtDNA_SNP.maxmiss80.filtered.mac2.nomono.vcf.gz
+
+plink --vcf $VCF --double-id --allow-extra-chr --set-missing-var-ids @:# --make-bed --pca --out output_name
