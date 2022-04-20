@@ -66,7 +66,7 @@ stop() #If you want to stop after the first part is done
 # Now create the Manhattan plot (first adding the window number and window length) - previously turn negative Fsts to 0
 # If using autosomes/chrZ, use: V1-Fst; V2&3 - Pi; V4&5 - Tajima's D; V6 - dxy; V7 - scf_names
 
-results_file<-as.data.frame(read.table("autosome_statistics.csv", sep="\t", h=F))
+results_file<-as.data.frame(read.table("autosome_statistics.csv", sep="\t", h=T))
 
 results_file$WindowNumber <- 1:nrow(results_file)
 
