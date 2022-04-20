@@ -70,7 +70,7 @@ stop() #If you want to stop after the first part is done
 
 results_file<-as.data.frame(read.table("autosome_statistics.csv", sep="\t", h=T))
 
-results_file[order(-results_file$scf_length),]
+results_file<-results_file[order(-results_file$scf_length),]
 head(results_file)
 
 results_file$WindowNumber <- 1:nrow(results_file)
