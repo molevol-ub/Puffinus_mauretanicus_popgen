@@ -1,4 +1,4 @@
-# Puffinus_mauretanicus_popgen
+# Population genomics in _Puffinus mauretanicus_
 
 # Introduction
 
