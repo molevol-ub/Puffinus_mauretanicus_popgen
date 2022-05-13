@@ -2,4 +2,4 @@ The 3 **numbered** scripts in this file are to be run after **both** the 9 scrip
 
 This means that you will be using a file that summarizes statistics including GC content and gene density as input.
 
-If you want to plot the results, use the 2nd half of the 4_popgenome.r script in the main *genome_scans* directory
+If you want to plot the results, use the 2nd half of the 4_popgenome.r script in the main *genome_scans* directory.
