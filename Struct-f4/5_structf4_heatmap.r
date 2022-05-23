@@ -1,4 +1,6 @@
-# Scripts to repeat barplot and heatplot (using individuals)
+#!/soft/R-4.1.1
+
+# R script to plot the results of generate heatmap with the modified individual-order; required packages - see below
 
 # 1 Heatplot (repeat)
 
@@ -16,15 +18,15 @@ suppressMessages(library(ggrepel))
 
 # Input files must consist only of the distance table included in the struct-f4 output between the lines "Initial K ...) and "lik". 
 
-setwd ("/home/guillem/Documentos/programari/plibradosanz-structf4-ac34f3d2d2a4/minmac_100_k2_auto")
-tab_file<-read.table("prova2.csv")
+setwd ("/path/to/your/directory")
+tab_file<-read.table("your_file.csv")
+
+# Rowv & Colv set to FALSE if you want to mantain the order of individuals set on your file
 
 plotDRIFT<-function(drift){heatmap.2(drift,dendrogram="row",Rowv=FALSE, Colv=FALSE, symm=TRUE,scale="none",sepwidth=c(0,0),trace="none")}
 
 table_def<-data.matrix(tab_file, rownames.force=NA)
 
-png(file="./heatmap_pmau.100.minmac2.auto.k2_prova.png", width=1000, height=1000)
+png(file="./your_output.png", width=1000, height=1000)
 plotDRIFT(abs(table_def))
 dev.off()
-
-# 2 "Barplot" - modifying aesthetics
