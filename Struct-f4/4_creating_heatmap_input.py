@@ -1,3 +1,5 @@
+#Python script to generate the input csv from where you can modify the order of individuals and generate a heatmap
+
 import os
 
 infile=open("pmau.100.minmac2.auto.f4.out")
@@ -20,17 +22,6 @@ for line in infile:
 		
 outfile.close()
 infile.close()
-
-infile=open("prova.csv")
-outfile=open("prova2.csv", "w")
-
-contents=infile.read().replace(" ", "\t")
-outcontents=contents.replace("\t\t", "\t")
-
-outfile.write(outcontents.replace("\t\t", "\t"))
-
-infile.close()
-outfile.close()
 
 os.rename("prova2.csv", "prova.csv")
 
