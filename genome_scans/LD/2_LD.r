@@ -1,3 +1,5 @@
+#!/soft/R-4.1.1
+
 # Rscript to created heatmap of the given scaffold using the LDheatmap library
 
 # Dependencies: LDheatmap, grid
