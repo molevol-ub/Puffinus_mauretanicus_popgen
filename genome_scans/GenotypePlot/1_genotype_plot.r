@@ -1,3 +1,5 @@
+#!/soft/R-4.1.1
+
 # Rscript to generate 2 genotype plots: one with P.puffinus, one without; based on https://github.com/JimWhiting91/genotype_plot
 
 library(GenotypePlot)
