@@ -1,17 +1,32 @@
 #!/soft/R-4.1.1/bin/R
+#$ -cwd
+#$ -R y
+#$ -e popgenome.err
+#$ -o popgenome.out
+#$ -q h12.q
+#$ -pe ompi128h12 2
+#$ -V                    #export environment var
+#$ -N PopGenome
+#$ -M 000izquierdoguillem@gmail.com
+#$ -m be
+
+# Manual found in: https://github.com/tonig-evo/workshop-popgenome/blob/tut2019/Whole_genome_analyses_using_VCF_files.pdf
 
 # Previously get a list of unique scaffolds with "zcat Puffinus_subset.recode.vcf.gz | grep -v "^#" | cut -f1 | sort | uniq > scaff_names" and make table with its first and last positions from scf_info_def.txt
 library(PopGenome)
 library(tidyverse)
 library(ggplot2)
 
-setwd("/home/guillem/Desktop")
+setwd("/users-d3/jferrer/gizquierdo/TFM/genome_scans/PopGenome")
 
 #First we take out the scaffold names and lengths
 
-scf_list <- read.table("../../vcfs/scf_length_prov.csv", sep="\t", h=F)
+scf_list <- read.table("../../vcfs/scf_length.csv", sep="\t", h=F)
 
-# Now we iterate through all of them and add them to a common dataframe; trycatch is used to detect and skip those scaffolds with length inferior to 10kbp
+# Now we iterate through all of them and add them to a common dataframe; trycatch is used to detect and skip those scaffolds with length inferior to the length of the windows
+
+# REMEMBER TO USE "include.unknown=TRUE" TO HANDLE MISSING DATA!
+
 # First we calculate Fst between populations (nucleotide) & pi; then dxy (where, as it is the last one, we add the scf_ID & position informations)
 
 full_F_ST<-data.frame()
@@ -24,7 +39,7 @@ for (n in 1:(length(scf_list$V1))){
 
 	message(scf_list$V1[n])
 
-	vcf_file<-readVCF("../../vcfs/Puffinus_SNP.maxmiss80.filtered.noPP.merged.nomono.vcf.gz",10000, scf_list$V1[n], 1, scf_list$V2[n])
+	vcf_file<-readVCF("../../vcfs/Puffinus_SNP.maxmiss80.filtered.noPP.merged.nomono.masked.vcf.gz",10000, scf_list$V1[n], 1, scf_list$V2[n], include.unknown=TRUE)
 	
 	vcf_file <- set.populations (vcf_file, list (c("ALT78", "CZA11", "ILA13", "ILA2", "PORQ", "TZE1", "G4", "M8"), c("M1", "M11", "M14", "M13", "M18", "M2", "M21", "M4")))
 	
