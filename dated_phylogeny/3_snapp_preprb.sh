@@ -1,3 +1,15 @@
+#!/bin/bash
+#$ -cwd
+#$ -R y
+#$ -e fixed_diff.err
+#$ -o fixed_diff.out
+#$ -q h13.q
+#$ -pe ompi255h13 4
+#$ -V                    #export environment var
+#$ -N fixed_diff            #name Job
+#$ -M 000izquierdoguillem@gmail.com
+#$ -m be
+
 # Bash script to run snapp_prep.rb in order to prepare files for time-callibrated SNAPP analyses
 
 # Options:  -v [string] --> input vcf file
