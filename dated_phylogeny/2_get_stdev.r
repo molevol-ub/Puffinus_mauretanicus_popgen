@@ -1,6 +1,6 @@
-# Rscript to get stdev (in real space) from 95% HPD:
+# Rscript to get stdev (in real space) from 95% HPD of previous studies:
 
-#1 Get sdlog (stdev in LOG space) by TRYING DIFFERENT VALUES OF STDEV until you get the desired HPD
+# 1. Get sdlog (stdev in LOG space) by TRYING DIFFERENT VALUES OF STDEV until you get the desired HPD
 
 library (TeachingDemos)
 
@@ -11,8 +11,7 @@ real_mean_HPD <- hpd(qlnorm, meanlog=log(my_mean)-stdev^2/2, sdlog=stdev)
 
 print(real_mean_HPD)
 
-# 2 Once you have the sdlog that gives you the desired HPD, transform into stdev
-
+# 2. Once you have the sdlog that gives you the desired HPD, transform into stdev
 # To do so, first you have to CALCULATE THE meanlog (or TRY DIFFERENT VALUES until it gives you the real mean)
 
 # Here you define function to calculate stdev i mean from sdlog and meanlog
@@ -29,7 +28,7 @@ logno_moments(meanlog, sdlog)
 
 #--------------------------------------------------------------------------------------------------------------------
 
-# Potential way to use a normal 
+# However these previous commands only work for lognormal distributions (?). Potential way to use a normal 
 
 library (TeachingDemos)
 
