@@ -10,7 +10,7 @@
 #$ -M 000izquierdoguillem@gmail.com
 #$ -m e
 
-# Procedure:
+# Script to find the fixed differences between 2 populations (whose .list files you must have prepared beforehand)
 
 cd /users-d3/jferrer/gizquierdo/TFM/fixed_differences
 
