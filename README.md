@@ -11,3 +11,4 @@ This git repository contains those scripts used during the population genomics a
 2. **Population_structure**: includes those analyses performed to visualize population structure within *P. mauretanicus* and *P. yelkouan*. Among these, we include: PCAs, Struct-f4, TreeMix and haplotype genealogy graphs for mitogenomes (using Fitchi).
 3. **Dated_phylogeny**: inference of time-callibrated species trees using SNAPP.
 4. **Genome_scans**: performance of genome-wide scans for signatures of selection, including detailed analyses of the main outlier windows.
+5. **Others**: smaller tasks, such as finding fixed differences between populations, calculating the SFS, ...
