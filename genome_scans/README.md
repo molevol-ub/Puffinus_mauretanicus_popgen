@@ -17,7 +17,7 @@ Aisde from these, you will find 4 folders for different complementary analyses t
   
  ## Scans for balancing selection
  
- Scripts to perform genome-wide scans aimed at detecting regions that might be under **balancing selecion** in one of the taxa can be found in:
+ Scripts to perform genome-wide scans aimed at detecting regions that might be under **balancing selection** in one of the taxa can be found in:
   - **BetaScan**: which calculate Beta statistics (in order to detect regions with SNPs with correlated MAFS).
   - **BalLerMix+**: which computes a composite likelihood ratio test in order to detects SNPs that might be under balancing selection according to the SFS around it.
  
