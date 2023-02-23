@@ -1,3 +1,7 @@
+#!/soft/R-4.1.1
+
+# Script to merge the windowed estimates of heterozigosity for all indvs - it must be run separately for each indv to achieve the unified file
+
 # Open files
 
 def <- read.table("het_popgenome.def.csv", sep="\t", header=TRUE)
@@ -41,3 +45,5 @@ all$PI_TZE1 <- all$PI_TZE1/all$Unmasked_proportion
 # Save with the PopGenome name
 
 write.table(x=all, file="het_popgenome.def.csv", sep="\t", quote=FALSE, row.names=FALSE)
+
+# Afterwards you still have to correct the distances of each individual for their coverage (per indv basis) and missingess filters (easily done in Excel).
