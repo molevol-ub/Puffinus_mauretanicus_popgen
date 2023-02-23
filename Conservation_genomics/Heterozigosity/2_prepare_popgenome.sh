@@ -14,7 +14,7 @@ VCF=/users-d3/jferrer/gizquierdo/TFG/chr_split/vcfs/auto/Puffinus_SNP.maxmiss80.
 
 list=(ALT78 CZA11 ILA13 ILA2 PORQ TZE1 M8 M1 M5 M20 M4 G3 M2 M3 M18 M13 M19 M14 M12 M11 M17 M10 M21 G12 G9 G10 G11 G14 G15 M16 G4 M6 COP1 LT2)
 
-# To correctly run the PopGenome analyses, we have to repeat the samples twice
+# Iterate through the list to: 1) Make a VCF for each indv; 2) Remove monomorphic positions; 3) Calculate nucleotide diversity (pi) in 25 kb windows (equivalent to observed heteroziogsity)
 
 for ind in ${list[*]}
 do
