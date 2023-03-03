@@ -17,7 +17,7 @@ list=(ALT78 CZA11 ILA13 ILA2 PORQ TZE1 M8 M1 M5 M20 M4 G3 M2 M3 M18 M13 M19 M14 
 for ind in ${list[*]}
 do
 
-/soft/R-4.1.1/bin/Rscript /users-d3/jferrer/gizquierdo/TFM/conservation_genomics/het/scripts/merge_dfs.5k.R $ind
+/soft/R-4.1.1/bin/Rscript /users-d3/jferrer/gizquierdo/TFM/conservation_genomics/het/scripts/merge_dfs.R $ind
 
 done
 
