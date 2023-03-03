@@ -8,6 +8,8 @@
 #$ -V                    #export environment var
 #$ -N vcftools.het             #name Job
 
+# Simple script to calculate genome-wide heterozygosity using VCFtools - not recommended, not included in the pipeline
+
 cd /users-d3/jferrer/gizquierdo/TFM/conservation_genomics/het
 
 VCF=/users-d3/jferrer/gizquierdo/TFG/chr_split/vcfs/auto/Puffinus_SNP.maxmiss100.filtered.noPP.merged.nomono.masked.vcf.gz
