@@ -144,22 +144,28 @@ tabix excluded.vcf.gz
 
 bcftools concat -Oz -o all_inds.ann.def.vcf.gz --threads 2 included.vcf.gz excluded.vcf.gz
 tabix all_inds.ann.def.vcf.gz
-gunzip all_inds.ann.def.vcf.gz
 
 #---------------------------------------------------------------
 
-# 7. "Reduce" the results; for example, if you want to keep the variant, the genotype and their effects:
+# 7. Due to the difficulty of working with the LOF tags, we extract those positions with LOF tags into another file (first incorporating the header)
 
-cat all_inds.ann.def.vcf | grep -v "##" | cut --complement -f 3,4,5,6,7,9 > all_inds.ann.def.txt
-
-# 8. Due to the difficulty of working with the LOF tags, we extract those positions with LOF tags into another file (first incorporating the header)
-
-cat all_inds.ann.def.txt | grep '#' > all_inds.ann.LOF.txt
-cat all_inds.ann.def.txt | grep 'LOF' >> all_inds.ann.LOF.txt
+zcat all_inds.ann.def.vcf.gz | grep '#' > all_inds.ann.LOF.txt
+zcat all_inds.ann.def.vcf.gz | grep 'LOF' >> all_inds.ann.LOF.txt
 
 # We'll also create another file without the MODIFIER variants to speed things up
 
-cat all_inds.ann.def.txt | grep -v 'MODIFIER' >> all_inds.ann.no_MODIFIER.txt
+cat all_inds.ann.def.vcf.gz  |  grep -v "##" | grep -v 'MODIFIER' >> all_inds.ann.no_MODIFIER.txt
+
+# 8. "Reduce" the results; for example, if you want to keep the variant, the genotype and their effects:
+
+file_list=(no_MODIFIER LOF)
+
+for file in ${file_list[*]}
+do
+
+cat all_inds.ann.$file.vcf | grep -v "##" | cut --complement -f 3,4,5,6,7,9 > all_inds.ann.def.txt
+
+done
 
 # 9. Now change positions of the columns so you can easily divide the "INFO" column into more columns, of which you'll keep just the 3 interesting ones
 
