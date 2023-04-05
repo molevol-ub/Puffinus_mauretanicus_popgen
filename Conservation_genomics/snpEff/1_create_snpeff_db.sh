@@ -123,7 +123,11 @@ mv included.recode.vcf included.vcf
 
 cat included.vcf | sed 's/0\/0/1\/1/g' > prova
 mv prova included.vcf
+cat included.vcf | sed 's/0|0/1\/1/g' > prova
+mv prova included.vcf
 cat included.vcf | sed 's/1\/1/0\/0/g' > prova
+mv prova included.vcf
+cat included.vcf | sed 's/1|1/0\/0/g' > prova
 mv prova included.vcf
 
 # 6c. Create vcf with those SNPs excluded in the filtered dataset
