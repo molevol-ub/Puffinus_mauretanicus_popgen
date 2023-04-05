@@ -142,7 +142,7 @@ bgzip excluded.vcf
 tabix included.vcf.gz
 tabix excluded.vcf.gz
 
-bcftools merge -Oz -o all_inds.ann.def.vcf.gz --threads 2 included.vcf.gz vcfs/excluded.vcf.gz
+bcftools concat -Oz -o all_inds.ann.def.vcf.gz --threads 2 included.vcf.gz excluded.vcf.gz
 tabix all_inds.ann.def.vcf.gz
 gunzip all_inds.ann.def.vcf.gz
 
