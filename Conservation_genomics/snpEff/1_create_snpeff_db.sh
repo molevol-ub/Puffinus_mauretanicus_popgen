@@ -149,7 +149,7 @@ tabix all_inds.ann.def.vcf.gz
 
 # 7. Due to the difficulty of working with the LOF tags, we extract those positions with LOF tags into another file (first incorporating the header)
 
-zcat all_inds.ann.def.vcf.gz | grep '#' > all_inds.ann.LOF.txt
+zcat all_inds.ann.def.vcf.gz | grep -v "##" | grep '#' > all_inds.ann.LOF.txt
 zcat all_inds.ann.def.vcf.gz | grep 'LOF' >> all_inds.ann.LOF.txt
 
 # We'll also create another file without the MODIFIER variants to speed things up
