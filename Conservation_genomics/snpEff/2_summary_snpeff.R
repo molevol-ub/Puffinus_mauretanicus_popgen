@@ -3,7 +3,7 @@
 library(dplyr)
 library(tidyr)
 
-setwd("/home/guillem/Documents/software/snpEff/vcfs")
+setwd("/home/guillem/Documentos/TFM/conservation_genomics/snpEff")
 input <- as.data.frame(read.table("outfile.no_MODIFIER.txt", sep="\t", header=TRUE))
 
 good_cols <- colnames(input)[!colnames(input) %in% c("CHROM","POS","INFO","RISK","GENE")]
