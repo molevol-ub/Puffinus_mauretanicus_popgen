@@ -4,7 +4,7 @@ library(dplyr)
 library(tidyr)
 library(ggplot2)
 
-setwd("/home/guillem/Documentos/TFM/conservation_genomics/snpEff")
+setwd("/home/guillem/Documentos/TFM/conservation_genomics/snpEff/def")
 input <- as.data.frame(read.table("outfile.no_MODIFIER.txt", sep="\t", header=TRUE))
 
 good_cols <- colnames(input)[!colnames(input) %in% c("CHROM","POS","INFO","RISK","GENE")]
