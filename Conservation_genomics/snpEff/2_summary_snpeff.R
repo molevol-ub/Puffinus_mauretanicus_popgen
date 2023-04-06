@@ -2,6 +2,7 @@
 
 library(dplyr)
 library(tidyr)
+library(ggplot2)
 
 setwd("/home/guillem/Documentos/TFM/conservation_genomics/snpEff")
 input <- as.data.frame(read.table("outfile.no_MODIFIER.txt", sep="\t", header=TRUE))
@@ -21,8 +22,26 @@ MODERATE <- count_mutation[count_mutation$RISK=="MODERATE",]
 
 png("snpEff.mac2.HIGH.noPP.png", width=2500, height=1000, res=150)
 violin_plot<-ggplot(HIGH, aes(x=IND, y=n, fill=GENOTYPE)) + geom_bar(stat="identity") +
-	scale_fill_manual (values = c("#0052A2", "#FF8532")) + theme_classic() +
-	labs(x="Individual", y= "# RISK mutations") + 
+	scale_fill_brewer (palette="Paired") + theme_classic() +
+	labs(x="Individual", y= "# HIGH risk mutations") + 
+	scale_x_discrete(limits = c("ALT78","CZA11","ILA13","ILA2","PORQ","TZE1","M6","M8","G14","G15","M16","G4","G3","M12","M13","M14","M18","M19","M20","M1","M2","M3","M4","M5","G9","G10","G11","G12","M10","M11","M17","M21"))
+violin_plot
+dev.off()
+
+
+png("snpEff.mac2.MODERATE.noPP.png", width=2500, height=1000, res=150)
+violin_plot<-ggplot(MODERATE, aes(x=IND, y=n, fill=GENOTYPE)) + geom_bar(stat="identity") +
+	scale_fill_brewer (palette="Paired") + theme_classic() +
+	labs(x="Individual", y= "# MODERATE risk mutations") + 
+	scale_x_discrete(limits = c("ALT78","CZA11","ILA13","ILA2","PORQ","TZE1","M6","M8","G14","G15","M16","G4","G3","M12","M13","M14","M18","M19","M20","M1","M2","M3","M4","M5","G9","G10","G11","G12","M10","M11","M17","M21"))
+violin_plot
+dev.off()
+
+
+png("snpEff.mac2.LOW.noPP.png", width=2500, height=1000, res=150)
+violin_plot<-ggplot(LOW, aes(x=IND, y=n, fill=GENOTYPE)) + geom_bar(stat="identity") +
+	scale_fill_brewer (palette="Paired") + theme_classic() +
+	labs(x="Individual", y= "# LOW risk mutations") + 
 	scale_x_discrete(limits = c("ALT78","CZA11","ILA13","ILA2","PORQ","TZE1","M6","M8","G14","G15","M16","G4","G3","M12","M13","M14","M18","M19","M20","M1","M2","M3","M4","M5","G9","G10","G11","G12","M10","M11","M17","M21"))
 violin_plot
 dev.off()
