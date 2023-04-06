@@ -163,7 +163,8 @@ file_list=(no_MODIFIER LOF)
 for file in ${file_list[*]}
 do
 
-cat all_inds.ann.$file.vcf | grep -v "##" | cut --complement -f 3,4,5,6,7,9 > all_inds.ann.def.txt
+cat all_inds.ann.$file.txt | grep -v "##" | cut --complement -f 3,4,5,6,7,9 > prova
+mv prova all_inds.ann.$file.txt
 
 done
 
