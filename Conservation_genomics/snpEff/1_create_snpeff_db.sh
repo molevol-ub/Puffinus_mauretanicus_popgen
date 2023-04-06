@@ -116,7 +116,7 @@ cat overlap_noPP_PPmono.bed | cut -f 1,2 > polarise_positions.bed
 
 # 6a. Create vcf with only those SNPs present in the filtered dataset
 
-vcftools --gzvcf all_inds.ann.vcf.gz --positions polarise_positions.bed --recode-INFO-all --out included
+vcftools --gzvcf all_inds.ann.vcf.gz --positions polarise_positions.bed --recode-INFO-all --recode --out included
 mv included.recode.vcf included.vcf
 
 # 6b. Change homozygous genotypes
@@ -132,7 +132,7 @@ mv prova included.vcf
 
 # 6c. Create vcf with those SNPs excluded in the filtered dataset
 
-vcftools --gzvcf all_inds.ann.vcf.gz --exclude-positions polarise_positions.bed --recode-INFO-all --out excluded
+vcftools --gzvcf all_inds.ann.vcf.gz --exclude-positions polarise_positions.bed --recode-INFO-all --recode --out excluded
 mv excluded.recode.vcf excluded.vcf
 
 # 6d. Merge excluded vcf + included&modified vcf
