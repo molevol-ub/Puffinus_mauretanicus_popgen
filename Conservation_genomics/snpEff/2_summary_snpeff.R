@@ -11,4 +11,8 @@ hola <- pivot_longer(input, cols = good_cols, names_to="IND", values_to="GENOTYP
 
 # And now count: 
 
-number_LOF <- hola[!hola$GENOTYPE %in% c("0/0","./."),] %>% count(RISK,GENOTYPE,IND)
+count_mutation <- hola[!hola$GENOTYPE %in% c("0/0","./."),] %>% count(RISK,GENOTYPE,IND)
+
+HIGH <- count_mutation[count_mutation$RISK="HIGH",]
+LOW <- count_mutation[count_mutation$RISK="LOW",]
+MODERATE <- count_mutation[count_mutation$RISK="MODERATE",]
