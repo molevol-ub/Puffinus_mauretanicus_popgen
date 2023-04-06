@@ -142,7 +142,7 @@ bgzip excluded.vcf
 tabix included.vcf.gz
 tabix excluded.vcf.gz
 
-bcftools concat -Oz -o all_inds.ann.def.vcf.gz --threads 12 included.vcf.gz excluded.vcf.gz
+bcftools concat -Oz -o all_inds.ann.def.vcf.gz -a --threads 12 included.vcf.gz excluded.vcf.gz
 tabix all_inds.ann.def.vcf.gz
 
 #---------------------------------------------------------------
@@ -154,7 +154,7 @@ zcat all_inds.ann.def.vcf.gz | grep 'LOF' >> all_inds.ann.LOF.txt
 
 # We'll also create another file without the MODIFIER variants to speed things up
 
-cat all_inds.ann.def.vcf.gz  |  grep -v "##" | grep -v 'MODIFIER' >> all_inds.ann.no_MODIFIER.txt
+zcat all_inds.ann.def.vcf.gz  |  grep -v "##" | grep -v 'MODIFIER' > all_inds.ann.no_MODIFIER.txt
 
 # 8. "Reduce" the results; for example, if you want to keep the variant, the genotype and their effects:
 
