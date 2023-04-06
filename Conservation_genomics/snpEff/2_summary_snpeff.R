@@ -16,3 +16,13 @@ count_mutation <- hola[!hola$GENOTYPE %in% c("0/0","./."),] %>% count(RISK,GENOT
 HIGH <- count_mutation[count_mutation$RISK=="HIGH",]
 LOW <- count_mutation[count_mutation$RISK=="LOW",]
 MODERATE <- count_mutation[count_mutation$RISK=="MODERATE",]
+
+# And plot:
+
+png("snpEff.mac2.HIGH.noPP.png", width=2500, height=1000, res=150)
+violin_plot<-ggplot(HIGH, aes(x=IND, y=n, fill=GENOTYPE)) + geom_bar(stat="identity") +
+	scale_fill_manual (values = c("#0052A2", "#FF8532")) + theme_classic() +
+	labs(x="Individual", y= "# RISK mutations") + 
+	scale_x_discrete(limits = c("ALT78","CZA11","ILA13","ILA2","PORQ","TZE1","M6","M8","G14","G15","M16","G4","G3","M12","M13","M14","M18","M19","M20","M1","M2","M3","M4","M5","G9","G10","G11","G12","M10","M11","M17","M21"))
+violin_plot
+dev.off()
