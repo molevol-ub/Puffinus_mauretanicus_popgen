@@ -11,12 +11,4 @@ hola <- pivot_longer(input, cols = good_cols, names_to="IND", values_to="GENOTYP
 
 # And now count: 
 
-number_LOF <- input %>% count(V4)
-
-# In function of genotype:
-
-number_LOF <- input %>% count(RISK,IND,GENOTYPE)
-
-# Or characterizing only HIGH risk variants
-
-number_LOF <- input[input$RISK=="HIGH",] %>% count(IND,GENOTYPE)
+number_LOF <- hola[!hola$GENOTYPE %in% c("0/0","./."),] %>% count(RISK,GENOTYPE,IND)
