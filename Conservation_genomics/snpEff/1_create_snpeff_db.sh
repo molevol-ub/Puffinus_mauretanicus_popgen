@@ -128,15 +128,15 @@ cat overlap_noPP_PPmono.bed | cut -f 1,2 > polarise_positions.bed
 vcftools --gzvcf all_inds.ann.vcf.gz --positions polarise_positions.bed --recode-INFO-all --recode --out included
 mv included.recode.vcf included.vcf
 
-# 6b. Change homozygous genotypes
+# 6b. Change homozygous genotypes - use the intermediary "phased genotypes" to avoid confusion during the use of "sed"
 
-cat included.vcf | sed 's/0\/0/1\/1/g' > prova
+cat included.vcf | sed 's/0\/0/0|0/g' > prova
 mv prova included.vcf
-cat included.vcf | sed 's/0|0/1\/1/g' > prova
-mv prova included.vcf
-cat included.vcf | sed 's/1\/1/0\/0/g' > prova
+cat included.vcf | sed 's/1\/1/1|1/g' > prova
 mv prova included.vcf
 cat included.vcf | sed 's/1|1/0\/0/g' > prova
+mv prova included.vcf
+cat included.vcf | sed 's/0|0/1\/1/g' > prova
 mv prova included.vcf
 
 # 6c. Create vcf with those SNPs excluded in the filtered dataset
