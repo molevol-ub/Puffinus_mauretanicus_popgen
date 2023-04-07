@@ -110,7 +110,16 @@ cd vcfs
 
 # 6. Change polarization of those genotypes that: a) Are monomorphic for the alternate allele in P.puffinus and b) Are polymorphic (mac=2 to exclude singletonces - sequencing errors) in Mediterranean Puffinus
 
-# We have obtained the filtered dataset previously with bcftools.... Now:
+# We have obtained the filtered dataset previously with bcftools:
+#Get file with Ppuf only
+#vcftools --gzvcf ~/gizquierdo/TFG/chr_split/vcfs/auto/Puffinus_SNP.minmax2.mindp4maxdp50.filtered.nomono.masked.vcf.gz --indv COP1 --indv LT2 --recode --out prova
+#Get SNPs monomorphic for the alternate allele
+#bcftools view -Oz -o Ppuf.HOMREF.vcf.gz -e 'COUNT(GT="RR")!=0||COUNT(GT="AR")!=0||COUNT(GT="RA")!=0' Ppuf.vcf.gz
+#Remove SNPs were both genotypes have missing data
+#vcftools --gzvcf Ppuf.HOMREF.vcf.gz --max-missing 0.4 --recode --out Ppuf.HOMREF.maxmiss40
+#Use intersect to get the SNPs that are also polymorphic in Ppuf
+#bedtools intersect -a Ppuf.HOMREF.maxmiss40.vcf.gz -b ~/gizquierdo/TFG/chr_split/vcfs/auto/Puffinus_SNP.minmax2.mindp4maxdp50.filtered.nomono.noPP.vcf.gz -bed > overlap_noPP_PPmono.bed
+#Now:
 
 cat overlap_noPP_PPmono.bed | cut -f 1,2 > polarise_positions.bed
 
