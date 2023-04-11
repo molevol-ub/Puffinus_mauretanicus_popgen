@@ -180,7 +180,7 @@ tabix all_inds.ann.def.vcf.gz
 #do
 #cat /disk3/h-user/ccuevas/Functional_Genome_Annotation/scripts/braker3/3pmaureta/augustus.hints.gff3 | grep "CDS" | grep "$p" >> Puffinus.NA_genes.names.txt
 #done < Puffinus.NA_genes.txt
-#cat Puffinus.NA_genes.names.txt | cut -f > prova
+#cat Puffinus.NA_genes.names.txt | cut -f 1,4,5 > prova
 #rm Puffinus.NA_genes.names.txt
 #mv prova.txt Puffinus.NA_genes.names.bed
 #nano Puffinus.NA_genes.names.bed --> write a header
