@@ -174,6 +174,7 @@ tabix all_inds.ann.def.vcf.gz
 #a) Identify genes with no homologues in the annotation
 #less /users-d3/DB_shared/Cristian/Pmau_genes_annotation.tab | cut -f 1,2,3,4,5 | grep -e "-NA-     -NA-    -NA-" | cut -f 1 > Puffinus.NA_genes.txt
 #b) Get their position
+#rm Puffinus.NA_genes.names.txt # Remove previous existing ones
 #touch Puffinus.NA_genes.names.txt
 #while IFS="" read -r p || [ -n "$p" ]
 #do
