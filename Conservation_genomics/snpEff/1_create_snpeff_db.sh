@@ -154,6 +154,22 @@ tabix excluded.vcf.gz
 bcftools concat -Oz -o all_inds.ann.def.vcf.gz -a --threads 12 included.vcf.gz excluded.vcf.gz
 tabix all_inds.ann.def.vcf.gz
 
+# 6e. You should also probably remove those monomorphic sites within Mediterranean Puffinus (including those monomorphic but with missing data):
+
+vcftools --gzvcf all_inds.ann.def.vcf.gz --remove-indv COP1 --remove-indv LT2 --recode-INFO-all --recode --out Pmed.ann.def
+
+mv Pmed.ann.def.recode.vcf Pmed.ann.def.vcf
+bgzip Pmed.ann.def.vcf
+tabix Pmed.ann.def.vcf.gz
+
+bcftools view -Oz -o prova.vcf.gz --threads 6 -e 'COUNT(GT="AA")==0 && COUNT(GT="AR")==0' Pmed.ann.def.nomono.vcf.gz
+tabix prova.vcf.gz
+bcftools view -Oz -o Pmed.ann.def.nomono.vcf.gz --threads 6 -e 'COUNT(GT="RR")==0 && COUNT(GT="AR")==0' prova.vcf.gz
+tabix Pmed.ann.def.nomono.vcf.gz
+
+mv Pmed.ann.def.nomono.vcf.gz all_inds.ann.def.vcf.gz         #Rename to fit the latter analyses' filenames 
+tabix all_inds.ann.def.vcf.gz
+
 #---------------------------------------------------------------
 
 # 7. Due to the difficulty of working with the LOF tags, we extract those positions with LOF tags into another file (first incorporating the header)
