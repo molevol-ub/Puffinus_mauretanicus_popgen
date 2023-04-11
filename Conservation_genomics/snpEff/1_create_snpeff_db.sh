@@ -170,6 +170,24 @@ tabix Pmed.ann.def.nomono.vcf.gz
 mv Pmed.ann.def.nomono.vcf.gz all_inds.ann.def.vcf.gz         #Rename to fit the latter analyses' filenames 
 tabix all_inds.ann.def.vcf.gz
 
+# If you want to remove "badly" annotated genes
+#a) Identify genes with no homologues in the annotation
+#less /users-d3/DB_shared/Cristian/Pmau_genes_annotation.tab | cut -f 1,2,3,4,5 | grep -e "-NA-     -NA-    -NA-" | cut -f 1 > Puffinus.NA_genes.txt
+#b) Get their position
+#touch Puffinus.NA_genes.names.txt
+#while IFS="" read -r p || [ -n "$p" ]
+#do
+#cat /disk3/h-user/ccuevas/Functional_Genome_Annotation/scripts/braker3/3pmaureta/augustus.hints.gff3 | grep "CDS" | grep "$p" >> Puffinus.NA_genes.names.txt
+#done < Puffinus.NA_genes.txt
+#cat Puffinus.NA_genes.names.txt | cut -f > prova
+#rm Puffinus.NA_genes.names.txt
+#mv prova.txt Puffinus.NA_genes.names.bed
+#nano Puffinus.NA_genes.names.bed --> write a header
+#c) Exclude those positions from the VCF
+# vcftools --gzvcf all_inds.ann.def.vcf.gz --exclude-bed Puffinus.NA_genes.names.bed --recode-INFO-all --recode --out prova
+#mv prova.recode.vcf all_inds.ann.def.vcf
+#bgzip all_inds.ann.def.vcf
+#tabix all_inds.ann.def.vcf.gz
 #---------------------------------------------------------------
 
 # 7. Due to the difficulty of working with the LOF tags, we extract those positions with LOF tags into another file (first incorporating the header)
