@@ -33,8 +33,8 @@ tabix COP1.chrZ.vcf.gz
 
 # 2. Use GATK to generate the P.puffinus  
 
-gatk FastaAlternateReferenceMaker
-
+gatk FastaAlternateReferenceMaker -R /users-d3/jferrer/pmau_popgen/genome/genome.fa -O Ppuf.chrZ.fa -V COP1.chrZ.vcf.gz
+gatk FastaAlternateReferenceMaker -R /users-d3/jferrer/pmau_popgen/genome/genome.fa -O Ppuf.fa -V COP1.auto.vcf.gz
 
 
 
