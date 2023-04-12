@@ -11,7 +11,7 @@ cd /users-d3/jferrer/gizquierdo/TFM/Cactus
 
 cd /users-d3/jferrer/gizquierdo/TFM/Cactus/Ppuf
 
-# 1. Create VCF with only P.puffinus puffinus (you can remove missing data as it is only 1 indv) and remove HOM REF files (but keep HOM ALT)
+# 1. Create VCF with only P.puffinus puffinus (you can remove missing data as it is only 1 indv) and remove HOM REF files (but keep HOM ALT) to run gatk faster
 # Repeat the step twice, for the autosomal and chrZ scaffolds
 
 #Autosomal
