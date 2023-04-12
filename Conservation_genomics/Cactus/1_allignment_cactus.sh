@@ -1,3 +1,15 @@
+#!/bin/bash
+#$ -cwd
+#$ -R y
+#$ -e gatk_reference.err
+#$ -o gatk_reference.out
+#$ -q h13.q
+#$ -pe ompi255h13 6
+#$ -V                    #export environment var
+#$ -N gatk_reference             #name Job
+#$ -M 000izquierdoguillem@gmail.com
+#$ -m be
+
 # Before anything else, enter the conda environment where you have installed Cactus (in this case with Python version 3.9)
 
 source activate py39
