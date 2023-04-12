@@ -16,7 +16,7 @@ cd /users-d3/jferrer/gizquierdo/TFM/Cactus/Ppuf
 
 #Autosomal
 
-bcftools view -Oz -o COP1.auto.vcf.gz --threads 6 -e 'COUNT(GT="RR")==N_SAMPLES' /users-d3/jferrer/gizquierdo/TFM/conservation_genomics/het/PopGenome/DEF_HET/COP1.vcf.gz
+bcftools view -Oz -o COP1.auto.vcf.gz --threads 6 -e 'COUNT(GT="RR")==N_SAMPLES' /users-d3/jferrer/gizquierdo/TFM/conservation_genomics/het/PopGenome/DEF_HET/COP1.masked.vcf.gz
 tabix COP1.auto.vcf.gz
 
 #chrZ
