@@ -49,8 +49,10 @@ gatk FastaAlternateReferenceMaker -R /users-d3/jferrer/pmau_popgen/genome/genome
 gatk FastaAlternateReferenceMaker -R /users-d3/jferrer/pmau_popgen/genome/genome.fa -O Ppuf.fa -V COP1.auto.vcf.gz
 
 #---------------------------------------------------------------------
-#---------------DOWNLOAD  THE  CACTUS  363-WAY  ALLIGNMENT------------
+#---------------PREPARE  THE  CACTUS  363-WAY  ALLIGNMENT------------
 #---------------------------------------------------------------------
+
+# 1. Download the 363-way allignment
 
 wget -P /media/guillem/BC90A1CD90A18F08/Guillem/TFM_GIA/Cactus https://cgl.gi.ucsc.edu/data/cactus/363-avian-2020-hub/Gallus_gallus/Gallus_gallus.maf.gz
 
