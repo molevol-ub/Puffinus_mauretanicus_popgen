@@ -48,6 +48,8 @@ tabix COP1.chrZ.vcf.gz
 gatk FastaAlternateReferenceMaker -R /users-d3/jferrer/pmau_popgen/genome/genome.fa -O Ppuf.chrZ.fa -V COP1.chrZ.vcf.gz
 gatk FastaAlternateReferenceMaker -R /users-d3/jferrer/pmau_popgen/genome/genome.fa -O Ppuf.fa -V COP1.auto.vcf.gz
 
+
+
 #---------------------------------------------------------------------
 #---------------PREPARE  THE  CACTUS  363-WAY  ALLIGNMENT------------
 #---------------------------------------------------------------------
@@ -57,8 +59,9 @@ gatk FastaAlternateReferenceMaker -R /users-d3/jferrer/pmau_popgen/genome/genome
 wget -P /media/guillem/BC90A1CD90A18F08/Guillem/TFM_GIA/Cactus https://cgl.gi.ucsc.edu/data/cactus/363-avian-2020-hub/Gallus_gallus/Gallus_gallus.maf.gz
 cd /your/dir
 
-# 2. Convert MAF.gz to FASTA files for each genome (using code and scripts found in: https://github.com/ANGSD/maf2fasta)
+# 2. Convert MAF.gz to FASTA files for each genome (the script maf2fasta.pl is required)
 
+perl /users-d3/jferrer/gizquierdo/TFM/Cactus/scripts/maf2fasta.pl < Gallus_gallus.maf.gz > Gallus_gallus.fasta
 
 # Remember to run with Singularity instead of Docker
 
