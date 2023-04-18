@@ -55,7 +55,20 @@ vcftools --gzvcf COP1.chrZ.vcf.gz --kept-sites --out COP1.chrZ
 cat COP1.chrZ.kept.sites | cut -f 1 | uniq > prova
 mv prova COP1.chrZ.kept.sites
 
+#Include these from chrZ fasta
+
 awk '{ if ((NR>1)&&($0~/^>/)) { printf("\n%s", $0); } else if (NR==1) { printf("%s", $0); } else { printf("\t%s", $0); } }' Ppuf.chrZ.fa | grep -Ff COP1.chrZ.kept.sites - | tr "\t" "\n" > prova
+mv prova Ppuf.def2.fa
+
+#Exclude from autosomal fasta
+
+awk '{ if ((NR>1)&&($0~/^>/)) { printf("\n%s", $0); } else if (NR==1) { printf("%s", $0); } else { printf("\t%s", $0); } }' Ppuf.fa | grep -v -Ff COP1.chrZ.kept.sites - | tr "\t" "\n" > prova
+mv prova Ppuf.def.fa
+
+# Concatenate files
+
+cat Ppuf.def2.fa >> Ppuf.def.fa
+rm Ppuf.def2.fa
 
 #---------------------------------------------------------------------
 #---------------PREPARE  THE  CACTUS  363-WAY  ALLIGNMENT------------
