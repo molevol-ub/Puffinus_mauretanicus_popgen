@@ -79,7 +79,7 @@ mv prova Ppuf.def.fa
 # 1st obtain the soft masked positions in the reference genom using a custom script
 
 soft_pos_script=/users-d3/jferrer/gizquierdo/TFM/Cactus/scripts/generate_masked_bed.py
-python $soft_pos_script Ppuf.def.fa soft_masked.bed
+python $soft_pos_script /users-d3/jferrer/pmau_popgen/genome/genome.fa soft_masked.bed
 
 # Now soft mask
 
