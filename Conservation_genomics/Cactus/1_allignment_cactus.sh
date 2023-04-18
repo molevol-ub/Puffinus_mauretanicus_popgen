@@ -70,6 +70,12 @@ mv prova Ppuf.def.fa
 cat Ppuf.def2.fa >> Ppuf.def.fa
 rm Ppuf.def2.fa
 
+# 4. Proceed to soft mask these genomes
+# 1st obtain the soft masked positions in the reference genom using a custom script
+
+soft_pos_script=/users-d3/jferrer/gizquierdo/TFM/Cactus/scripts/generate_masked_bed.py
+python $soft_pos_script Ppuf.def.fa > soft_masked.bed
+
 #---------------------------------------------------------------------
 #---------------PREPARE  THE  CACTUS  363-WAY  ALLIGNMENT------------
 #---------------------------------------------------------------------
@@ -81,7 +87,10 @@ cd /your/dir
 
 # 2. Convert MAF.gz to FASTA files for each genome (the script maf2fasta.pl is required)
 
-perl /users-d3/jferrer/gizquierdo/TFM/Cactus/scripts/maf2fasta.pl < Gallus_gallus.maf.gz > Gallus_gallus.fasta
+gunzip Gallus_gallus.maf.gz
+perl /users-d3/jferrer/gizquierdo/TFM/Cactus/scripts/maf2fasta.pl < Gallus_gallus.maf > Gallus_gallus.fasta
+#rm Gallus_gallus.maf  if gunzipped file still present
+
 
 # Remember to run with Singularity instead of Docker
 
