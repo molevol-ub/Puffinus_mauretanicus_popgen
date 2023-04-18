@@ -70,11 +70,20 @@ mv prova Ppuf.def.fa
 cat Ppuf.def2.fa >> Ppuf.def.fa
 rm Ppuf.def2.fa
 
+#Eliminate any white spaces that might have appeared by error
+
+sed 's/ /_/g' Ppuf.def.fa > prova
+mv prova Ppuf.def.fa
+
 # 4. Proceed to soft mask these genomes
 # 1st obtain the soft masked positions in the reference genom using a custom script
 
 soft_pos_script=/users-d3/jferrer/gizquierdo/TFM/Cactus/scripts/generate_masked_bed.py
-python $soft_pos_script Ppuf.def.fa > soft_masked.bed
+python $soft_pos_script Ppuf.def.fa soft_masked.bed
+
+# Now soft mask
+
+bedtools maskfasta -fi Ppuf.def.fa -bed soft_masked.bed -fo Ppuf.masked.fa -soft
 
 #---------------------------------------------------------------------
 #---------------PREPARE  THE  CACTUS  363-WAY  ALLIGNMENT------------
