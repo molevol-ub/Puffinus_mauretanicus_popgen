@@ -83,7 +83,7 @@ python $soft_pos_script /users-d3/jferrer/pmau_popgen/genome/genome.fa soft_mask
 
 # Now soft mask
 
-bedtools maskfasta -fi Ppuf.def.fa -bed soft_masked.bed -fo Ppuf.masked.fa -soft
+bedtools maskfasta -fi Ppuf.def.fa -bed soft_masked.bed -soft > Ppuf.masked.fa
 
 #---------------------------------------------------------------------
 #---------------PREPARE  THE  CACTUS  363-WAY  ALLIGNMENT------------
