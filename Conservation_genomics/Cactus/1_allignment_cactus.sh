@@ -70,9 +70,12 @@ mv prova Ppuf.def.fa
 cat Ppuf.def2.fa >> Ppuf.def.fa
 rm Ppuf.def2.fa
 
-#Eliminate any white spaces that might have appeared by error
+#Eliminate any white spaces that might have appeared by error - later remove estra characters to end up with just the scaffold
 
 sed 's/ /_/g' Ppuf.def.fa > prova
+mv prova Ppuf.def.fa
+
+cat Ppuf.def.fa sed 's/:[1234567890-]\+//g' | sed 's/[1234567890]\+_//g' > prova
 mv prova Ppuf.def.fa
 
 # 4. Proceed to soft mask these genomes
