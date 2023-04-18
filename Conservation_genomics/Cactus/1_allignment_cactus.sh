@@ -75,7 +75,7 @@ rm Ppuf.def2.fa
 sed 's/ /_/g' Ppuf.def.fa > prova
 mv prova Ppuf.def.fa
 
-cat Ppuf.def.fa sed 's/:[1234567890-]\+//g' | sed 's/[1234567890]\+_//g' > prova
+cat Ppuf.def.fa | sed 's/:[1234567890-]\+//g' | sed 's/[1234567890]\+_//g' > prova
 mv prova Ppuf.def.fa
 
 # 4. Proceed to soft mask these genomes
