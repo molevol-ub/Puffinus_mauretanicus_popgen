@@ -48,7 +48,14 @@ tabix COP1.chrZ.vcf.gz
 gatk FastaAlternateReferenceMaker -R /users-d3/jferrer/pmau_popgen/genome/genome.fa -O Ppuf.chrZ.fa -V COP1.chrZ.vcf.gz
 gatk FastaAlternateReferenceMaker -R /users-d3/jferrer/pmau_popgen/genome/genome.fa -O Ppuf.fa -V COP1.auto.vcf.gz
 
+# 3. Keep only sex-linked scaffolds in Ppuf.chrZ.fa, while remove them from Ppuf.fa - afterwards, combine them into one single file: Ppuf.def.fa
+# To do so, 1st you have to list scaffold names in the chrZ VCF
 
+vcftools --gzvcf COP1.chrZ.vcf.gz --kept-sites --out COP1.chrZ
+cat COP1.chrZ.kept.sites | cut -f 1 | uniq > prova
+mv prova COP1.chrZ.kept.sites
+
+awk '{ if ((NR>1)&&($0~/^>/)) { printf("\n%s", $0); } else if (NR==1) { printf("%s", $0); } else { printf("\t%s", $0); } }' Ppuf.chrZ.fa | grep -Ff COP1.chrZ.kept.sites - | tr "\t" "\n" > prova
 
 #---------------------------------------------------------------------
 #---------------PREPARE  THE  CACTUS  363-WAY  ALLIGNMENT------------
