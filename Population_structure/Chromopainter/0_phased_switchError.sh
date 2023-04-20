@@ -14,6 +14,7 @@
 
 outdir=/users-d3/jferrer/pmau_popgen/SNP_calling/vcfs/phased_vcfs_def/autosomes
 ref_genome=/users/ccuevas/Functional_Genome_Annotation/scripts/braker3/3pmaureta/genome.fa
+vcfdir=$outdir
 
 cd $outdir
 
@@ -26,7 +27,14 @@ source activate whatshap
 
 for ind in (CZA11 G15 M19 G11 M17)
 do
-vcftools --gzvcf $vcfdir/whatshap_phased/Puffinus_raw.auto.whatshap_phased.vcf.gz --remove-indv $ind --recode-INFO-all --recode $vcfdir/whatshap_phased/Puffinus_raw.$ind.whatshap_phased.vcf.gz
+vcftools --gzvcf $vcfdir/whatshap_phased/Puffinus_raw.auto.whatshap_phased.vcf.gz --remove-indv $ind --recode-INFO-all --recode --out $vcfdir/whatshap_phased/Puffinus_raw.$ind.whatshap_phased
+mv $vcfdir/whatshap_phased/Puffinus_raw.$ind.whatshap_phased.recode.vcf $vcfdir/whatshap_phased/Puffinus_raw.$ind.whatshap_phased.vcf
+bgzip $vcfdir/whatshap_phased/Puffinus_raw.$ind.whatshap_phased.vcf
+tabix $vcfdir/whatshap_phased/Puffinus_raw.$ind.whatshap_phased.vcf.gz
+done
+
+for ind in CZA11 G15 M19 G11 M17
+do
 
 # Start of the script of shapeit4---------------------------
 
