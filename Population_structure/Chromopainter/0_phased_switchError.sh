@@ -80,7 +80,7 @@ tabix $output_vcf
 
 # 3. Generate input bcf files for switchError (1st shapeit, 2nd whatshap-phased)
 
-cd 
+cd /users-d3/jferrer/pmau_popgen/SNP_calling/vcfs/phased_vcfs_def/autosomes/switchError
 vcfdir=/users-d3/jferrer/pmau_popgen/SNP_calling/vcfs/phased_vcfs_def/autosomes
 
 bcftools view -Ou -o Puffinus_shapeit.M19.bcf -s M19 $vcfdir/Puffinus_raw.M19.shapeit4_whatshap_phased.vcf.gz
