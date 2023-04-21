@@ -48,6 +48,7 @@ bgzip $vcfdir/whatshap_phased/Puffinus_raw.only_M19.whatshap_phased.vcf
 tabix $vcfdir/whatshap_phased/Puffinus_raw.only_M19.whatshap_phased.vcf.gz
 
 bcftools merge -Oz -o $vcfdir/whatshap_phased/Puffinus_raw.M19.def.whatshap_phased.vcf.gz $vcfdir/whatshap_phased/Puffinus_raw.only_M19.whatshap_phased.vcf.gz $vcfdir/whatshap_phased/Puffinus_raw.M19.whatshap_phased.vcf.gz
+tabix Puffinus_raw.M19.def.whatshap_phased.vcf.gz
 
 # Start of the script of shapeit4---------------------------
 
