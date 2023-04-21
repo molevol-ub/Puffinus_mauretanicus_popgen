@@ -21,7 +21,6 @@ cd $outdir
 # 1. Activate the conda enviroment were switchError is installed
 
 source activate whatshap
-#source activate switchError
 
 # 2. Run shapeit with all but 1 individual; just for trial we'll iterate through the removal of 5 individuals: CZA11, G15, M19, G11, M17
 
@@ -77,7 +76,6 @@ tabix $output_vcf
 
 # Stop of the script of shapeit4----------------------------
 
-
 # 3. Generate input bcf files for switchError (1st shapeit, 2nd whatshap-phased)
 
 cd /users-d3/jferrer/pmau_popgen/SNP_calling/vcfs/phased_vcfs_def/autosomes/switchError
@@ -90,5 +88,7 @@ bcftools view -Ou -o Puffinus_whatshap.bcf -s M19 $vcfdir/whatshap_phased/Puffin
 #       --gen includes the phased independently phased individuals (whatshap)
 #       --hap includes the statistically phased individuals (shapeit4)
 #       --reg includes the regions to be evaluated
+
+source activate switchError    #Activate the environment
 
 switchError --gen Puffinus_whatshap.bcf --hap Puffinus_shapeit.M19.bcf --reg /users-d3/jferrer/gizquierdo/TFM/genome_scans/PopGenome/auto_def_wM8/25_windows.bed --out Puffinus.M19
