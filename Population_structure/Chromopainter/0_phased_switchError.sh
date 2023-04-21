@@ -85,3 +85,10 @@ vcfdir=/users-d3/jferrer/pmau_popgen/SNP_calling/vcfs/phased_vcfs_def/autosomes
 
 bcftools view -Ou -o Puffinus_shapeit.M19.bcf -s M19 $vcfdir/Puffinus_raw.M19.shapeit4_whatshap_phased.vcf.gz
 bcftools view -Ou -o Puffinus_whatshap.bcf -s M19 $vcfdir/whatshap_phased/Puffinus_raw.auto.whatshap_phased.vcf.gz
+
+# 4. Run switchError were, if I understand it correctly (https://github.com/SPG-group/switchError/pull/3/files)
+#       --gen includes the phased independently phased individuals (whatshap)
+#       --hap includes the statistically phased individuals (shapeit4)
+#       --reg includes the regions to be evaluated
+
+switchError --gen Puffinus_whatshap.bcf --hap Puffinus_shapeit.M19.bcf --reg /users-d3/jferrer/gizquierdo/TFM/genome_scans/PopGenome/auto_def_wM8/25_windows.bed --out Puffinus.M19
