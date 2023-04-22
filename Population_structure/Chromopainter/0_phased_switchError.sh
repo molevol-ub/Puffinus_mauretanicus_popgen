@@ -135,3 +135,5 @@ mv prova.recode.vcf Puffinus_shapeit.M19.only_phased.vcf
 
 vcftools --vcf Puffinus_whatshap.M19.only_phased.vcf --bed Puffinus.M19.snpden --recode-INFO-all --recode --out prova
 mv prova.recode.vcf Puffinus_whatshap.M19.only_phased.vcf
+
+vcftools --vcf Puffinus_whatshap.M19.only_phased.vcf --diff Puffinus_shapeit.M19.only_phased.vcf --diff-switch-error --out Puffinus.M19.only_phased.pruned
