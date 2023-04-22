@@ -106,3 +106,32 @@ grep "^#" Puffinus_whatshap.M19.def.vcf > Puffinus_shapeit.M19.only_phased.vcf
 bedtools intersect -a Puffinus_shapeit.M19.def.vcf -b Puffinus_whatshap.M19.only_phased.vcf >> Puffinus_shapeit.M19.only_phased.vcf
 
 vcftools --vcf Puffinus_whatshap.M19.only_phased.vcf --diff Puffinus_shapeit.M19.only_phased.vcf --diff-switch-error --out Puffinus.M19.only_phased
+
+#----------------------------------------------------------------------------------------------------
+
+# 6. Test whether switch error decreases when eliminating windows with low SNP density, which should be more prone to bad phasing
+
+# 6.1. Obtain the SNP density in 25 kb windows (the non-modified whatshap-phased VCF shoudl work)
+
+vcftools --vcf Puffinus_whatshap.M19.def.vcf --SNPdensity 25000 --out Puffinus.M19
+
+# 6.2 Calculate the threshold (90% above)
+
+thres=$(sort -g -r -k4 Puffinus.M19.snpden | awk '{all[NR] = $4} END{print all[int(NR*0.9 - 0.5)]}')
+
+# 6.3. Keep windows above threshold
+
+awk -v thres=$thres '$4<thres{next}1' Puffinus.M19.snpden > prova
+cat prova | cut -f 1,2 > Puffinus.M19.snpden
+awk '$1 == "CHROM" {print $1, $2, $3 = "BIN_END"}' Puffinus.M19.snpden > prova
+awk '$1 != "CHROM" {print $1, $2, $3 = $2+24999}' Puffinus.M19.snpden >> prova
+# Change separators to tabs
+sed 's/ /\t/g' prova > Puffinus.M19.snpden
+
+# 6.4. Include only these positions in the VCFs and later calculate the switch error
+
+vcftools --vcf Puffinus_shapeit.M19.only_phased.vcf --bed Puffinus.M19.snpden --recode-INFO-all --recode --out prova
+mv prova.recode.vcf Puffinus_shapeit.M19.only_phased.vcf
+
+vcftools --vcf Puffinus_whatshap.M19.only_phased.vcf --bed Puffinus.M19.snpden --recode-INFO-all --recode --out prova
+mv prova.recode.vcf Puffinus_whatshap.M19.only_phased.vcf
