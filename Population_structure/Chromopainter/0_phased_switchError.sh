@@ -81,4 +81,10 @@ cd /users-d3/jferrer/pmau_popgen/SNP_calling/vcfs/phased_vcfs_def/autosomes/swit
 # 3. Use bedtools intersecte to keep only positions in common between both files (?)
 # 4. Sort both vcfs in the same order
 
-bcftools sort -Ov -o prova Puffinus_shapeit.M19.def.vcf
+grep "^#" Puffinus_shapeit.M19.def.vcf > prova
+grep -v "^#" Puffinus_shapeit.M19.def.vcf | sort -k1,1V -k2,2g >> prova 
+mv prova Puffinus_shapeit.M19.def.vcf 
+
+grep "^#" Puffinus_whatshap.M19.def.vcf > prova
+grep -v "^#" Puffinus_whatshap.M19.def.vcf | sort -k1,1V -k2,2g >> prova 
+mv prova Puffinus_whatshap.M19.def.vcf 
