@@ -88,3 +88,5 @@ mv prova Puffinus_shapeit.M19.def.vcf
 grep "^#" Puffinus_whatshap.M19.def.vcf > prova
 grep -v "^#" Puffinus_whatshap.M19.def.vcf | sort -k1,1V -k2,2g >> prova 
 mv prova Puffinus_whatshap.M19.def.vcf 
+
+vcftools --vcf Puffinus_whatshap.M19.def.vcf --diff Puffinus_shapeit.M19.def.vcf --diff-switch-error --out Puffinus.M19
