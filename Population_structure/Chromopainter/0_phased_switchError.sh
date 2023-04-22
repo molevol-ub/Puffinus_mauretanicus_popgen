@@ -89,4 +89,20 @@ grep "^#" Puffinus_whatshap.M19.def.vcf > prova
 grep -v "^#" Puffinus_whatshap.M19.def.vcf | sort -k1,1V -k2,2g >> prova 
 mv prova Puffinus_whatshap.M19.def.vcf 
 
+# 5. Calculate switch error
+
 vcftools --vcf Puffinus_whatshap.M19.def.vcf --diff Puffinus_shapeit.M19.def.vcf --diff-switch-error --out Puffinus.M19
+
+# We can try with just the phased positions for the whatshap file: 1st keep those positions from the whatshap file (and sort them) and then intersect with the shapeit file
+
+grep "^#" Puffinus_whatshap.M19.def.vcf > Puffinus_whatshap.M19.only_phased.vcf
+grep "1|1" Puffinus_whatshap.M19.def.vcf > prova
+grep "0|1" Puffinus_whatshap.M19.def.vcf >> prova
+grep "1|0" Puffinus_whatshap.M19.def.vcf >> prova
+grep "0|0" Puffinus_whatshap.M19.def.vcf >> prova
+grep -v "^#" prova | sort -k1,1V -k2,2g >> Puffinus_whatshap.M19.only_phased.vcf 
+
+grep "^#" Puffinus_whatshap.M19.def.vcf > Puffinus_shapeit.M19.only_phased.vcf
+bedtools intersect -a Puffinus_shapeit.M19.def.vcf -b Puffinus_whatshap.M19.only_phased.vcf >> Puffinus_shapeit.M19.only_phased.vcf
+
+vcftools --vcf Puffinus_whatshap.M19.only_phased.vcf --diff Puffinus_shapeit.M19.only_phased.vcf --diff-switch-error --out Puffinus.M19.only_phased
