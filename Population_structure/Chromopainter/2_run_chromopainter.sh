@@ -15,3 +15,7 @@
 #      · “-i 10 -in -iM” specifies to use 10 iterations of Expectation-Maximisation to infer the switch (“-in”) and emission (“-iM”) parameters. 
 
 ChromoPainterv2 -g Puffinus.auto.nPP.maxmiss80.chromopainter.inp -r Puffinus.auto.nPP.maxmiss80.recomrates.txt -a 0 0 -s 0 -i 10 -in -iM -o Puffinus.auto.nPP.maxmiss80
+
+# 2. Calculate the average estimated values for n and M to use in the final chromopainter run. The script might need some polishing to use the appropiate input (parameters "$infilePREFIX", "$infileSUFFIX", "@chromovec" and "@chromolengths")
+# For more info see: https://github.com/hellenthal-group-UCL/fastGLOBETROTTER/blob/master/tutorial/ChromoPainterv2EstimatedNeMutExtractEM.pl
+
