@@ -21,9 +21,12 @@ invcf=/users-d3/jferrer/pmau_popgen/SNP_calling/vcfs/phased_vcfs_def/autosomes/P
 outvcf=/users-d3/jferrer/pmau_popgen/SNP_calling/vcfs/phased_vcfs_def/autosomes/Puffinus_def.auto.shapeit4_whatshap_phased.nPP.maxmiss80
 outvcf_nomono=/users-d3/jferrer/pmau_popgen/SNP_calling/vcfs/phased_vcfs_def/autosomes/Puffinus_def.auto.shapeit4_whatshap_phased.nPP.maxmiss80.vcf
 
-vcftools --gzvcf $invcf --max-missing 0.8 --min-alleles 2 --max-alleles 2 --minDP 4 --maxDP 50 --minQ 30 --remove-indv M22 --remove-indv sacella \
---remove-indv M7 --remove-indv COP1 --remove-indv LT2 --remove-filtered-all --recode-INFO-all --recode --out $outvcf
+vcftools --gzvcf $invcf --remove-indv M22 --remove-indv sacella --remove-indv M7 --remove-indv COP1 --remove-indv LT2 --recode-INFO-all --recode --out $outvcf
 mv $outvcf.recode.vcf $outvcf.vcf
+
+grep "^#" $outvcf.vcf > prova
+bedtools intersect -a $outvcf.vcf -b /users-d3/jferrer/gizquierdo/TFG/chr_split/vcfs/auto/Puffinus_SNP.maxmiss80.filtered.noPP.merged.nomono.masked.vcf.gz* | grep -v "^#" >> prova
+mv prova $outvcf.vcf
 
 bcftools view -Ov -o $outvcf_nomono --threads 4 -e 'COUNT(GT="AA")=N_SAMPLES || COUNT(GT="RR")=N_SAMPLES' $outvcf.vcf
 
