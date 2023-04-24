@@ -40,3 +40,8 @@ head Puffinus.auto.nPP.maxmiss80.chromopainter.inp -n 3 > prova
 tail -n +4 Puffinus.auto.nPP.maxmiss80.chromopainter.inp | sed 's/ //g' >> prova
 mv prova Puffinus.auto.nPP.maxmiss80.chromopainter.inp
 
+#----------------------------------------------------------------------------------------
+
+# 4. Repeat these two last steps with 1/2 of the indvs and 1/20 of the scaffolds to generate a reduced dataset to run the parameter estimation step
+
+vcftools
