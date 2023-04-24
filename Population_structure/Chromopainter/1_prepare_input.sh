@@ -80,24 +80,34 @@ infile=open("/users-d3/jferrer/gizquierdo/TFM/chromopainter/Puffinus_subset.reco
 outfile=open("/users-d3/jferrer/gizquierdo/TFM/chromopainter/prova.txt", "w")
 
 count=0
+first_line=""
+first_recomb="0.00000001"
 
 for line in infile:
   if "start" not in line:
     exp=re.search(r"(.+) (.+)\n", line)
-    print(exp)
     pos=int(exp.group(1))
     recomb=exp.group(2)
-   
-  if pos > count:
-    outfile.write(line)
+    
+    if pos > count:
+      if count != 0:
+        outfile.write(str(count) + " " + first_recomb + "\n")
+    else:
+      outfile.write(str(count) + " -9\n")
+    
+    count=pos
+    first_line=line
+    first_recomb=recomb
+    
   else:
-    outfile.write(str(pos) + " -9\n")
-  
-  count=pos
-  
-  if "start" in line:
     outfile.write(line)
     
 
 infile.close()
 outfile.close()
+
+# Copy the last line, that is not included in the script
+
+tail -n 1 Puffinus_subset.recomrates.txt >> prova.txt
+
+mv prova.txt Puffinus_subset.recomrates.txt
