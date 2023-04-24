@@ -100,7 +100,7 @@ cd /your/dir
 # 2. Export the library paths that are required in the following scripts; if you don't know the path, use "locate"
 
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/disk3/h-user/jferrer/programari/anaconda3/bin/cactus/js/build-temp-027501980/rootfs/usr/lib/x86_64-linux-gnu/
-
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/disk3/h-user/vadim.pisarenco/anaconda3/lib/
 
 # 3. Convert HAL to FASTA using 
 
