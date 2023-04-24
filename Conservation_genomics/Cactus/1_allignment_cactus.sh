@@ -97,11 +97,12 @@ bedtools maskfasta -fi Ppuf.def.fa -bed soft_masked.bed -soft > Ppuf.masked.fa
 wget -P /media/guillem/BC90A1CD90A18F08/Guillem/TFM_GIA/Cactus https://cgl.gi.ucsc.edu/data/cactus/363-avian-2020-hub/Gallus_gallus/Gallus_gallus.maf.gz
 cd /your/dir
 
-# 2. Convert MAF.gz to FASTA files for each genome (the script maf2fasta.pl is required)
+# 2. Export the library paths that are required in the following scripts; if you don't know the path, use "locate"
 
-gunzip Gallus_gallus.maf.gz
-perl /users-d3/jferrer/gizquierdo/TFM/Cactus/scripts/maf2fasta.pl < Gallus_gallus.maf > Gallus_gallus.fasta
-#rm Gallus_gallus.maf  if gunzipped file still present
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/disk3/h-user/jferrer/programari/anaconda3/bin/cactus/js/build-temp-027501980/rootfs/usr/lib/x86_64-linux-gnu/
+
+
+# 3. Convert HAL to FASTA using 
 
 
 # Remember to run with Singularity instead of Docker
