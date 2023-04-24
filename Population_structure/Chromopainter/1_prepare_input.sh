@@ -70,3 +70,34 @@ vcf_to_chromopainter_main.R -g Puffinus_subset.vcf -o Puffinus_subset
 head Puffinus_subset.chromopainter.inp -n 3 > prova
 tail -n +4 Puffinus_subset.chromopainter.inp | sed 's/ //g' >> prova
 mv prova Puffinus_subset.chromopainter.inp
+
+#-------------------------------------------------------------------------------------------
+
+# 5. Modify the input recombination file so that the last recombination of every gene is substituted by "-9" to accomodate the requirements of chromopainter
+
+import re
+infile=open("/users-d3/jferrer/gizquierdo/TFM/chromopainter/Puffinus_subset.recomrates.txt")
+outfile=open("/users-d3/jferrer/gizquierdo/TFM/chromopainter/prova.txt", "w")
+
+count=0
+
+for line in infile:
+  if "start" not in line:
+    exp=re.search(r"(.+) (.+)\n", line)
+    print(exp)
+    pos=int(exp.group(1))
+    recomb=exp.group(2)
+   
+  if pos > count:
+    outfile.write(line)
+  else:
+    outfile.write(str(pos) + " -9\n")
+  
+  count=pos
+  
+  if "start" in line:
+    outfile.write(line)
+    
+
+infile.close()
+outfile.close()
