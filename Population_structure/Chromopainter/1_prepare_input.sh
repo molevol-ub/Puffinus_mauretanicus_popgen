@@ -42,6 +42,11 @@ mv prova Puffinus.auto.nPP.maxmiss80.chromopainter.inp
 
 #----------------------------------------------------------------------------------------
 
-# 4. Repeat these two last steps with 1/2 of the indvs and 1/20 of the scaffolds to generate a reduced dataset to run the parameter estimation step
+# 4. Repeat these two last steps with 1/2 of the indvs and 1/10 of the scaffolds to generate a reduced dataset to run the parameter estimation step
 
-vcftools
+#4.1. Count scaffolds from a list (scaffold.txt) and divide into 10; then write into a new file
+nline=$(wc -l scaffolds.txt | sed 's/ scaffolds.txt//g')
+nline=$(echo $nline/10 | bc)
+shuf -n $nline scaffolds.txt > scaffolds.reduced.txt 
+
+vcftools 
