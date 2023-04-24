@@ -19,7 +19,7 @@ cd $workdir
 
 invcf=/users-d3/jferrer/pmau_popgen/SNP_calling/vcfs/phased_vcfs_def/autosomes/Puffinus_raw.auto.shapeit4_whatshap_phased.vcf.gz
 outvcf=/users-d3/jferrer/pmau_popgen/SNP_calling/vcfs/phased_vcfs_def/autosomes/Puffinus_def.auto.shapeit4_whatshap_phased.nPP.maxmiss80
-outvcf_nomono=/users-d3/jferrer/pmau_popgen/SNP_calling/vcfs/phased_vcfs_def/autosomes/Puffinus_def.auto.shapeit4_whatshap_phased.nPP.maxmiss80.vcf
+outvcf_nomono=/users-d3/jferrer/pmau_popgen/SNP_calling/vcfs/phased_vcfs_def/autosomes/Puffinus_def.auto.shapeit4_whatshap_phased.nPP.maxmiss80.nomono.vcf
 
 vcftools --gzvcf $invcf --remove-indv M22 --remove-indv sacella --remove-indv M7 --remove-indv COP1 --remove-indv LT2 --recode-INFO-all --recode --out $outvcf
 mv $outvcf.recode.vcf $outvcf.vcf
