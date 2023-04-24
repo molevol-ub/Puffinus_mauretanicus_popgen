@@ -75,7 +75,8 @@ mv prova Puffinus_subset.chromopainter.inp
 
 # 5. Modify the input recombination file so that the last recombination of every gene is substituted by "-9" to accomodate the requirements of chromopainter
 
-python
+scripts_dir=/users-d3/jferrer/gizquierdo/TFM/chromopainter/scripts
+python $scripts_dir/correct_recomb_file.py Puffinus_subset.recomrates.txt prova.txt
 
 # Copy the last line, that is not included in the script
 
