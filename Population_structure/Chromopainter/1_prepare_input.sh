@@ -54,5 +54,9 @@ shuf -n $nline scaffolds.txt > scaffolds.reduced.txt
 awk -F'\t' 'BEGIN {OFS=FS} {print $1, $2=0, $3 = 50000000}' scaffolds.reduced.txt > prova.txt
 mv prova.txt scaffolds_reduced.txt
 
+#4.3. Filter the vcf
+
 vcftools --vcf $outvcf_nomono --keep Puffinus.txt --bed scaffolds_reduced.txt --recode-INFO-all --recode --out Puffinus_subset
 mv Puffinus_subset.recode.vcf Puffinus_subset.vcf
+
+# If the number of SNPs is too small (due to the fact that the randomly-chosen scaffolds are too few) repeat all three steps
