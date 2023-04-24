@@ -60,3 +60,13 @@ vcftools --vcf $outvcf_nomono --keep Puffinus.txt --bed scaffolds_reduced.txt --
 mv Puffinus_subset.recode.vcf Puffinus_subset.vcf
 
 # If the number of SNPs is too small (due to the fact that the randomly-chosen scaffolds are too few) repeat all three steps
+
+#4.4. Transform VCF to chromopainter input (if it works) using the script provided in: https://github.com/sahwa/vcf_to_chromopainter
+
+vcf_to_chromopainter_main.R -g Puffinus_subset.vcf -o Puffinus_subset
+
+#4.5. Remove spaces from the "haplotype" lines in the haplotype input file
+
+head Puffinus_subset.chromopainter.inp -n 3 > prova
+tail -n +4 Puffinus_subset.chromopainter.inp | sed 's/ //g' >> prova
+mv prova Puffinus_subset.chromopainter.inp
