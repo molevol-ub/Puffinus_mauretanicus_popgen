@@ -1,8 +1,11 @@
 # Python script to add separation between chromosomes in the recombination input file (add -9 to the last position of each chromosome)
 
+beta_file=sys.argv[1]
+scf_file=sys.argv[2]
+
 import re
-infile=open("/users-d3/jferrer/gizquierdo/TFM/chromopainter/Puffinus_subset.recomrates.txt")
-outfile=open("/users-d3/jferrer/gizquierdo/TFM/chromopainter/prova.txt", "w")
+infile=open(beta_file)
+outfile=open(scf_file, "w")
 
 count=0
 first_line=""
