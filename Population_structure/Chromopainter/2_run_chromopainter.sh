@@ -23,4 +23,8 @@ ChromoPainterv2 -g Puffinus_subset.chromopainter.inp -r Puffinus_subset.recomrat
 
 perl scripts/ChromoPainterv2EstimatedNeMutExtractEM.pl 
 
+# In our case, the resulting estimates are: -n=33700.840; -M=0.022739
+
 # 3. Using the output values of the previous step, run chromopainter
+
+ChromoPainterv2 -g Puffinus.auto.nPP.maxmiss80.chromopainter.inp -r Puffinus.auto.nPP.maxmiss80.recomrates.txt -a 0 0 -n 33700.840 -M 0.022739 -o Puffinus.auto.nPP.maxmiss80
