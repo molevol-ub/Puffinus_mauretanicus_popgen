@@ -22,6 +22,7 @@ export PYTHONPATH=<parent of hal>:${PYTHONPATH}          #/home/guillem/Document
 bird363=/media/guillem/BC90A1CD90A18F08/Guillem/TFM_GIA/Cactus/363-avian-2020.hal
 hal2fasta $bird363 $(halStats --root $bird363) --subtree --upper --ucscSequenceNames > /media/guillem/BC90A1CD90A18F08/Guillem/TFM_GIA/Cactus/363_bird.fa &
 
+# 4. Remove ancestral bird genomes
 
 # Remember to run with Singularity instead of Docker
 
