@@ -6,11 +6,11 @@
 ######################################
 ## INPUT:
 
-$infilePREFIX="Puffinus.auto.nPP.";
+$infilePREFIX="Puffinus.";
 $infileSUFFIX=".EMprobs.out";
 
-@chromovec=("maxmiss80");
-@chromolengths=(5014);    ## number of SNPs
+@chromovec=("_subset");
+@chromolengths=(1031078);    ## number of SNPs
 
 #######################################
 ## PROGRAM:
