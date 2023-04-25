@@ -1,9 +1,11 @@
 # Python script to add separation between chromosomes in the recombination input file (add -9 to the last position of each chromosome)
 
+import re
+import sys
+
 beta_file=sys.argv[1]
 scf_file=sys.argv[2]
 
-import re
 infile=open(beta_file)
 outfile=open(scf_file, "w")
 
