@@ -83,3 +83,9 @@ python $scripts_dir/correct_recomb_file.py Puffinus_subset.recomrates.txt prova.
 tail -n 1 Puffinus_subset.recomrates.txt >> prova.txt
 
 mv prova.txt Puffinus_subset.recomrates.txt
+
+# 5.2. Repeat for the final input file
+
+python $scripts_dir/correct_recomb_file.py Puffinus.auto.nPP.maxmiss80.recomrates.txt prova.txt
+tail -n 1 Puffinus.auto.nPP.maxmiss80.recomrates.txt >> prova.txt
+mv prova.txt Puffinus.auto.nPP.maxmiss80.recomrates.txt
