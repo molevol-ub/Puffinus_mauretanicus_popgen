@@ -17,12 +17,16 @@ cd /your/dir
 export PATH=<path to hal>/bin:${PATH}                    #/home/guillem/Documents/software/hal
 export PYTHONPATH=<parent of hal>:${PYTHONPATH}          #/home/guillem/Documents/software
 
-# 3. Convert HAL to FASTA using hal2fasta
+# 3. Convert HAL to FASTA using hal2fasta only for those taxa included the subtree rooted in your desired taxon (in our case birdAnc276 includes only Procellaridae and Hydrobatidae)
 
 bird363=/media/guillem/BC90A1CD90A18F08/Guillem/TFM_GIA/Cactus/363-avian-2020.hal
-hal2fasta $bird363 $(halStats --root $bird363) --subtree --upper --ucscSequenceNames > /media/guillem/BC90A1CD90A18F08/Guillem/TFM_GIA/Cactus/363_bird.fa &
+hal2fasta $bird363 birdAnc276 --subtree --ucscSequenceNames > /media/guillem/BC90A1CD90A18F08/Guillem/TFM_GIA/Cactus/363_bird.fa &
 
-# 4. Remove ancestral bird genomes
+# 4. Divide the output by species (a[2] as we split the header by ">" and "."
+
+awk '/^>/{split($1,a,"[>.]")}{print >> a[2]".fa"}' 363_bird.fa &
+
+
 
 # Remember to run with Singularity instead of Docker
 
