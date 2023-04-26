@@ -26,7 +26,10 @@ hal2fasta $bird363 birdAnc276 --subtree --ucscSequenceNames > /media/guillem/BC9
 
 awk '/^>/{split($1,a,"[>.]")}{print >> a[2]".fa"}' 363_bird.fa &
 
+# 5. Manually generate the input files for the two Cactus runs
 
+nano Puffinus_run1.txt
+nano Puffinus_run2.txt
 
 # Remember to run with Singularity instead of Docker
 
