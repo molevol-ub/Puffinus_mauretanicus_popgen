@@ -30,3 +30,26 @@ chunklengths<-data.matrix(chunklengths, rownames.force=NA)
 pdf(file="chunklengths.pdf", width=1000, height=1000)
 plotDRIFT(abs(chunklengths))
 dev.off()
+
+#---------------------------------------------------------------------------------------------------
+# Boxplot
+
+library(tidyverse)
+library(ggplot2)
+library(grid)
+
+# Now draw a Manhattan plot akin to what you did with the results of PopGenome
+
+setwd("/home/guillem/Documentos/TFM/chromopainter")
+chunklengths <- as.data.frame(read.table("Boxplot_chunklengths.csv", header=T, sep="\t"))
+
+Mallorca<-chunklengths %>% filter(POP == "Mallorca")
+Pyel<-chunklengths %>% filter(POP == "Pyel")
+Menorca<-chunklengths %>% filter(POP == "Menorca")
+Cabrera<-chunklengths %>% filter(POP == "Cabrera")
+Pitiuses<-chunklengths %>% filter(POP == "Pitiuses")
+
+pdf("boxplot_Pyel.chunklengths.pdf", width=1400, height=1000)
+Tajima_box<-boxplot(Pyel$Pyel, Menorca$Pyel, Mallorca$Pyel, Cabrera$Pyel, Pitiuses$Pyel, las=2, outline=FALSE, col = c("#0052A2", "#789FF2", "#8B0001", "#C34632", "#FF8532"), 
+                    names=c("P.yelkouan","Menorca","Mallorca","Cabrera","Pitiüses"))
+dev.off()
