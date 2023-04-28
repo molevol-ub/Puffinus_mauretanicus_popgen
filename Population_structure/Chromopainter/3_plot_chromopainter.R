@@ -49,7 +49,11 @@ Menorca<-chunklengths %>% filter(POP == "Menorca")
 Cabrera<-chunklengths %>% filter(POP == "Cabrera")
 Pitiuses<-chunklengths %>% filter(POP == "Pitiuses")
 
-pdf("boxplot_Pyel.chunklengths.pdf", width=1400, height=1000)
-Tajima_box<-boxplot(Pyel$Pyel, Menorca$Pyel, Mallorca$Pyel, Cabrera$Pyel, Pitiuses$Pyel, las=2, outline=FALSE, col = c("#0052A2", "#789FF2", "#8B0001", "#C34632", "#FF8532"), 
-                    names=c("P.yelkouan","Menorca","Mallorca","Cabrera","Pitiüses"))
+pdf("boxplot_Pyel.chunklengths.pdf", width=12, height=7)
+ggplot(chunklengths, aes(x=POP, y=Pyel, fill=POP)) + geom_boxplot() +
+    scale_x_discrete(limits=c("Pyel","Menorca","Cabrera","Mallorca","Pitiuses")) +
+    scale_fill_manual(values = c("#C34632", "#8B0001", "#789FF2", "#FF8532", "#0052A2")) + theme_classic() +
+    geom_jitter(shape=16, position=position_jitter(0.1)) + theme(legend.position="none") + ylab ("Length of P.yelkouan chunks (cM))")
+    
+                    
 dev.off()
