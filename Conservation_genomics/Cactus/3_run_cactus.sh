@@ -8,4 +8,5 @@ mkdir jobstore
 
 # Remember to run with Singularity instead of Docker
 
-cactus ./jobstore Puffinus_run1.txt Puffinus_run1.hal --root birdAnc361 --binariesMode singularity
+cactus ./jobstore Puffinus_run1.txt Puffinus_run1.hal --root birdAnc361 --binariesMode singularity --consCores 36 --batchSystem slurm --logFile Cactus.log --rotatingLogging
+
