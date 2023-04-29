@@ -1,1 +1,12 @@
-(((((((Pyel:0.00007,Pmau:0.00007)birdAnc363:0.00005,Ppuf:0.0015)birdAnc362:0.00013,Calonectris_borealis:0.0147531)birdAnc361:0.013,Pelecanoides_urinatrix:0.0235188)birdAnc274:0.00191839,Fulmarus_glacialis:0.0200138)birdAnc275:0.0158454,Hydrobates_tethys:0.0352207)birdAnc276:0.0022129);
+(((((((Pyel:0.00007,Pmau:0.00007),Ppuf:0.0015),Calonectris_borealis:0.0147531),Pelecanoides_urinatrix:0.0235188)birdAnc274:0.00191839,Fulmarus_glacialis:0.0200138)birdAnc275:0.0158454,Hydrobates_tethys:0.0352207)birdAnc276:0.0022129);
+
+Pyel  /users-d3/jferrer/gizquierdo/TFM/Cactus/genomes/Pyel.fa
+Pmau  /users-d3/jferrer/gizquierdo/TFM/Cactus/genomes/Pmau.fa
+Ppuf  /users-d3/jferrer/gizquierdo/TFM/Cactus/genomes/Ppuf.fa
+Calonectris_borealis  /users-d3/jferrer/gizquierdo/TFM/Cactus/genomes/Calonectris_borealis.fa
+Pelecanoides_urinatrix  /users-d3/jferrer/gizquierdo/TFM/Cactus/genomes/Pelecanoides_urinatrix.fa
+birdAnc274  /users-d3/jferrer/gizquierdo/TFM/Cactus/genomes/birdAnc274.fa
+Fulmarus_glacialis  /users-d3/jferrer/gizquierdo/TFM/Cactus/genomes/Fulmarus_glacialis.fa
+birdAnc275  /users-d3/jferrer/gizquierdo/TFM/Cactus/genomes/birdAnc275.fa
+Hydrobates_tethys /users-d3/jferrer/gizquierdo/TFM/Cactus/genomes/Hydrobates_tethys.fa
+birdAnc276  /users-d3/jferrer/gizquierdo/TFM/Cactus/genomes/birdAnc276.fa
