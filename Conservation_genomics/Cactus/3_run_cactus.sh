@@ -4,4 +4,4 @@
 source activate py39
 cd /users-d3/jferrer/gizquierdo/TFM/Cactus/Cactus
 
-cactus jobStore Puffinus_run1.txt Puffinus_run1.hal --root genome7 
+cactus ./jobstore Puffinus_run1.txt Puffinus_run1.hal --root birdAnc361 
