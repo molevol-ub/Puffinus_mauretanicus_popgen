@@ -31,6 +31,4 @@ awk '/^>/{split($1,a,"[>.]")}{print >> a[2]".fa"}' 363_bird.fa &
 nano Puffinus_run1.txt
 nano Puffinus_run2.txt
 
-# Remember to run with Singularity instead of Docker
 
---binariesMode singularity
