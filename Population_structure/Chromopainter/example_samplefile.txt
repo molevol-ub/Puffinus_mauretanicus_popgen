@@ -1,0 +1,1 @@
+/users-d3/jferrer/gizquierdo/TFM/chromopainter/Menorca_noMenCab/Puffinus.auto.nPP.maxmiss80.samples.out     # The output from 4.2 of script 2_run_chromopainter.sh
