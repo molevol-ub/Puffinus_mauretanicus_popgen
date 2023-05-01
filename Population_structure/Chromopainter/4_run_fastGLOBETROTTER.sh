@@ -15,3 +15,8 @@
 POP=Menorca_noMenCab
 cd /users-d3/jferrer/gizquierdo/TFM/chromopainter/$POP/fastGLOBETROTTER
 
+# 2. Run fastGLOBETROTTER (1st you may test the memory needed with the "mem --no-save" option
+
+fastGLOBETROTTER=/users-d3/jferrer/programari/fastGLOBETROTTER/fastGLOBETROTTER.R
+
+R < $fastGLOBETROTTER paramfile.txt samplefile.txt recomfile.txt mem -no-save > prova_memory.txt
