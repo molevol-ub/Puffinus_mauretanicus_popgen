@@ -1,0 +1,20 @@
+prop.ind: 1                             # 1 to use all individuals
+bootstrap.date.ind: 1                   # 1 to perform bootstrap resampling
+null.ind: 1                             # 1 to standardize by a "NULL" ind (see manual)
+input.file.ids: /users-d3/jferrer/gizquierdo/TFM/chromopainter/Puffinus.auto.nPP.maxmiss80.idfile.txt                   # Use files obtained in step 4.1
+input.file.copyvectors: /users-d3/jferrer/gizquierdo/TFM/chromopainter/Puffinus.auto.nPP.maxmiss80.chunklengths.out     # Use files obtained in step 4.1
+save.file.main: Puffinus.auto.nPP.maxmiss80.chunklengths.main
+save.file.bootstraps: Puffinus.auto.nPP.maxmiss80.chunklengths.boot
+copyvector.popnames: Pyel Mallorca Pitiuses
+surrogate.popnames: Pyel Mallorca Pitiuses
+target.popname: Menorca
+num.mixing.iterations: 5
+props.cutoff: 0.001
+bootstrap.num: 1000
+num.admixdates.bootstrap: 1             # Use 1 when admixture simple; 2 when multiple
+num.surrogatepops.perplot: 3            # Use the total number of surrogate pops
+curve.range: 1 30                       # Plotting options
+bin.width: 0.1
+xlim.plot: 0 30
+prop.continue.ind: 0                    # Don't touch these last 2 arguments
+haploid.ind: 0
