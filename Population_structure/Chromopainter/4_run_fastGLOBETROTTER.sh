@@ -19,4 +19,4 @@ cd /users-d3/jferrer/gizquierdo/TFM/chromopainter/$POP/fastGLOBETROTTER
 
 fastGLOBETROTTER=/users-d3/jferrer/programari/fastGLOBETROTTER/fastGLOBETROTTER.R
 
-R < $fastGLOBETROTTER paramfile.txt samplefile.txt recomfile.txt mem -no-save > prova_memory.txt
+/soft/R-4.1.1/bin/R < $fastGLOBETROTTER paramfile.txt samplefile.txt recomfile.txt mem -no-save > prova_memory.txt
