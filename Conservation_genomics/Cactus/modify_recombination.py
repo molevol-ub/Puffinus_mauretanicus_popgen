@@ -12,7 +12,7 @@ for line in infile:
     outfile.write(line)
   else:
     exp=re.search(r"(.+) (.+)\n", line)
-    pos=float(exp.group(1))
+    pos=int(exp.group(1))
     rec=exp.group(2)
     
     
