@@ -23,12 +23,12 @@ for line in infile:
     
     else:
       if last_pos_chr > first_pos_chr:
-        first_pos_chr=last_pos_chr
+        first_pos_chr=0
         current_pos=first_pos_chr+pos                                           # This remedy is to avoid altering positions of the 1st chromosome
         outfile.write(str(current_pos) + " " + rec + "\n")
       
       else:
-        first_pos_chr=last_pos_chr+1000000
+        first_pos_chr=last_pos_chr+10000000
         current_pos=first_pos_chr+pos                                            # After a change of chromosome, add 1 million bp to the previous position (last SNP of the previous chromosome)
         outfile.write(str(current_pos) + " " + rec + "\n")
 
