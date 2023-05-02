@@ -1,12 +1,12 @@
 #!/bin/bash
 #$ -cwd
 #$ -R y
-#$ -e gatk_reference.err
-#$ -o gatk_reference.out
+#$ -e cactus.err
+#$ -o cactus.out
 #$ -q h13.q
 #$ -pe ompi255h13 36
 #$ -V                    #export environment var
-#$ -N gatk_reference             #name Job
+#$ -N cactus             #name Job
 #$ -M 000izquierdoguillem@gmail.com
 #$ -m be
 
