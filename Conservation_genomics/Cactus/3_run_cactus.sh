@@ -18,5 +18,5 @@ cd /users-d3/jferrer/gizquierdo/TFM/Cactus/Cactus
 
 # Remember to run with Singularity instead of Docker
 
-cactus jobstore Puffinus_run1.txt Puffinus_run1.hal --root birdAnc361 --binariesMode singularity --consCores 36 --batchSystem slurm --logFile Cactus.log --rotatingLogging
+cactus jobstore Puffinus_run1.txt Puffinus_run1.hal --root birdAnc361 --binariesMode local --consCores 36 --maxCores 36 --batchSystem grid_engine --logFile Cactus.log --rotatingLogging
 
