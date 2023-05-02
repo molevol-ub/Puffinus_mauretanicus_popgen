@@ -6,6 +6,7 @@ outfile=open("Puffinus.auto.nPP.maxmiss80.recomrates_positive.txt","w")
 last_pos=0
 last_pos_chr=1
 count_position=0
+current_pos=0
 
 for line in infile:
   if "start.pos" in line:
@@ -22,13 +23,10 @@ for line in infile:
       last_pos=pos
     
     else:
-      if last_pos==last_pos_chr:
-        last_pos=pos+1000000                                            # After a change of chromosome, add 1 million bp to the previous position (last SNP of the previous chromosome)
-        outfile.write(str(last_pos) + " " + rec + "\n")
-      
-      else:
-        last_pos+=pos                                                   # In the rest of lines sum to the previous one, which already has the milion bp incorporated
-        outfile.write(str(last_pos) + " " + rec + "\n")
+      current_pos=last_pos+pos+1000000                                            # After a change of chromosome, add 1 million bp to the previous position (last SNP of the previous chromosome)
+      outfile.write(str(current_pos) + " " + rec + "\n")
+      last_pos=current_pos
+
       
 infile.close()
 outfile.close()
