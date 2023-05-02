@@ -1,7 +1,7 @@
 import re
 
 infile=open("Puffinus.auto.nPP.maxmiss80.recomrates.txt")
-outfile=open("Puffinus.auto.nPP.maxmiss80.recomrates_positive.txt","w")
+outfile=open("Puffinus.auto.nPP.maxmiss80.recomrates_positive2.txt","w")
 
 last_pos_chr=1
 first_pos_chr=0
