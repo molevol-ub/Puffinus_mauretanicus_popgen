@@ -22,7 +22,7 @@ for line in infile:
       last_pos_chr=current_pos
     
     else:
-      if last_pos_chr > first_pos_chr:
+      if last_pos_chr == 1:
         current_pos=first_pos_chr + pos                                           # This remedy is to avoid altering positions of the 1st chromosome
         outfile.write(str(current_pos) + " " + rec + "\n")
       
