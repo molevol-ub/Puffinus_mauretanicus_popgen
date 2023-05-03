@@ -1,7 +1,7 @@
 import re
 
 infile=open("Puffinus.auto.nPP.maxmiss80.recomrates.txt")
-outfile=open("Puffinus.auto.nPP.maxmiss80.recomrates_positive2.txt","w")
+outfile=open("Puffinus.auto.nPP.maxmiss80.recomrates_positive3.txt","w")
 
 last_pos_chr=1
 first_pos_chr=0
@@ -18,7 +18,7 @@ for line in infile:
     
     if "-9" in line:
       current_pos=first_pos_chr+pos
-      outfile.write(str(current_pos) + " 0.00000001\n")
+      outfile.write(str(current_pos) + " 0\n")
       last_pos_chr=current_pos
     
     else:
