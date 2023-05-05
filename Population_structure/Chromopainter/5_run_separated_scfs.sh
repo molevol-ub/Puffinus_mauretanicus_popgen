@@ -20,6 +20,6 @@ outvcf_nomono=/users-d3/jferrer/pmau_popgen/SNP_calling/vcfs/phased_vcfs_def/aut
 scf_list=/users-d3/jferrer/pmau_popgen/SNP_calling/vcfs/phased_vcfs_def/autosomes/scf_list.txt
 
 while read line; do
-  vcftools --vcf $outvcf_mono --chr $line --recode-INFO-all --recode --out $line
+  vcftools --vcf $outvcf_nomono --chr $line --recode-INFO-all --recode --out $line
   mv $line.recode.vcf $line.vcf
 done < $scf_list
