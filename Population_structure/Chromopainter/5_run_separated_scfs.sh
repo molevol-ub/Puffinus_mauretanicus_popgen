@@ -39,13 +39,4 @@ while read scf; do
   tail -n +4 $scf.chromopainter.inp | sed 's/ //g' >> prova
   mv prova $scf.chromopainter.inp
   
-  # 4. Modify the input recombination file so that the last recombination of every gene is substituted by "-9" to accomodate the requirements of chromopainter
-  
-  python correct_recomb_file.py $scf.recomrates.txt prova.txt
-  
-  # Copy the last line, that is not included in the script
-  
-  tail -n 1 $scf.recomrates.txt >> prova.txt
-  mv prova.txt $scf.recomrates.txt
-
 done < scaffolds.txt
