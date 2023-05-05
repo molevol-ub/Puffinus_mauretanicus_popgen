@@ -31,7 +31,7 @@ while read scf; do
 
   # 2. Transform VCF to chromopainter input (if it works) using the script provided in: https://github.com/sahwa/vcf_to_chromopainter
   
-  vcf_to_chromopainter_main.R -g $scf.vcf -o $scf
+  Rscript vcf_to_chromopainter_main.R -g ../vcfs/$scf.vcf -o $scf
   
   # 3. Remove spaces from the "haplotype" lines in the haplotype input file
   
@@ -39,4 +39,4 @@ while read scf; do
   tail -n +4 $scf.chromopainter.inp | sed 's/ //g' >> prova
   mv prova $scf.chromopainter.inp
   
-done < scaffolds.txt
+done < ../vcfs/scaffolds.txt
