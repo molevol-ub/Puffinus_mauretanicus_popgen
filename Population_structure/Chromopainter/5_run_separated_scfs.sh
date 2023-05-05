@@ -1,12 +1,12 @@
 #!/bin/bash
 #$ -cwd
 #$ -R y
-#$ -e gatk_reference.err
-#$ -o gatk_reference.out
+#$ -e divide_vcf.err
+#$ -o divide_vcf.out
 #$ -q h12.q
 #$ -pe ompi128h12 2
 #$ -V                    #export environment var
-#$ -N gatk_reference             #name Job
+#$ -N divide_vcf             #name Job
 #$ -M 000izquierdoguillem@gmail.com
 #$ -m be
 
