@@ -50,12 +50,9 @@ maindir=/users-d3/jferrer/gizquierdo/TFM/chromopainter
 mkdir Menorca_noMen
 mkdir Menorca_noMenCab
 
-while read scf; do
-  
-  ChromoPainterv2 -g $scf.chromopainter.inp -r $scf.recomrates.txt -t $maindir/Puffinus.auto.nPP.maxmiss80.idfile.txt \
-    -f $maindir/popfiles/Puffinus.auto.nPP.maxmiss80.popfile_men2.txt 0 0 -n 33700.840 -M 0.022739 -o Menorca_noMen/$scf
-  
-  ChromoPainterv2 -g $scf.chromopainter.inp -r $scf.recomrates.txt -t $maindir/Puffinus.auto.nPP.maxmiss80.idfile.txt \
-    -f $maindir/popfiles/Puffinus.auto.nPP.maxmiss80.popfile_men3.txt 0 0 -n 33700.840 -M 0.022739 -o Menorca_noMenCab/$scf
+ChromoPainterv2 -g ${scf[(($SGE_TASK_ID))]}\.chromopainter.inp -r ${scf[(($SGE_TASK_ID))]}\.recomrates.txt -t $maindir/Puffinus.auto.nPP.maxmiss80.idfile.txt \
+  -f $maindir/popfiles/Puffinus.auto.nPP.maxmiss80.popfile_men2.txt 0 0 -n 33700.840 -M 0.022739 -o Menorca_noMen/${scf[(($SGE_TASK_ID))]}
 
-done < scaffolds.txt
+ChromoPainterv2 -g ${scf[(($SGE_TASK_ID))]}\.chromopainter.inp -r ${scf[(($SGE_TASK_ID))]}\.recomrates.txt -t $maindir/Puffinus.auto.nPP.maxmiss80.idfile.txt \
+  -f $maindir/popfiles/Puffinus.auto.nPP.maxmiss80.popfile_men3.txt 0 0 -n 33700.840 -M 0.022739 -o Menorca_noMenCab/${scf[(($SGE_TASK_ID))]}
+
