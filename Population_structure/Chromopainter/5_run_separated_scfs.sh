@@ -14,10 +14,13 @@ workdir=/users-d3/jferrer/gizquierdo/TFM/chromopainter/scaffolds
 #mkdir $workdir
 cd $workdir
 
-# 1. Divide your VCF by scaffolds
+# 0. Make your list of scaffolds
 
 outvcf_nomono=/users-d3/jferrer/pmau_popgen/SNP_calling/vcfs/phased_vcfs_def/autosomes/Puffinus_def.auto.shapeit4_whatshap_phased.nPP.maxmiss80.nomono.vcf
-scf_list=/users-d3/jferrer/pmau_popgen/SNP_calling/vcfs/phased_vcfs_def/autosomes/scf_list.txt
+zcat $outvcf_nomono | grep -v "^#" | cut -f1 | sort | uniq > scaffolds.txt
+scf=($(cat scaffolds.txt))
+
+# 1. Divide your VCF by scaffolds
 
 #while read line; do
 #  vcftools --vcf $outvcf_nomono --chr $line --recode-INFO-all --recode --out $line
