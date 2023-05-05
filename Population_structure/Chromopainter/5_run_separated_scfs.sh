@@ -56,3 +56,9 @@ ChromoPainterv2 -g ${scf[(($SGE_TASK_ID))]}\.chromopainter.inp -r ${scf[(($SGE_T
 ChromoPainterv2 -g ${scf[(($SGE_TASK_ID))]}\.chromopainter.inp -r ${scf[(($SGE_TASK_ID))]}\.recomrates.txt -t $maindir/Puffinus.auto.nPP.maxmiss80.idfile.txt \
   -f $maindir/popfiles/Puffinus.auto.nPP.maxmiss80.popfile_men3.txt 0 0 -n 33700.840 -M 0.022739 -o Menorca_noMenCab/${scf[(($SGE_TASK_ID))]}
 
+# 5. Now for every directory, once you enter it, create the sample files and recombination files (and write the parameter file manually, there's an example in the directory)
+
+cd Menorca_noMenCab
+ls -d "$PWD"/*sampl* > samplefile.txt         # samplefile
+cd .. 
+ls -d "$PWD"/*recom* > recomfile.txt          # recomfile in the chromopainter_input directory
