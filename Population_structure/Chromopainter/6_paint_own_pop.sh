@@ -6,18 +6,20 @@
 #$ -q h11.q
 #$ -pe ompi64h11 1
 #$ -V                    #export environment var
-#$ -N divide_vcf             #name Job
-#$ -t 1-876
-#$ -tc 36
+#$ -N own_pops             #name Job
 
 # Script to modify chromopainter input files in order paint samples according to their own population
 
-workdir=/users-d3/jferrer/gizquierdo/TFM/chromopainter/scaffolds_double
+workdir=/users-d3/jferrer/gizquierdo/TFM/chromopainter/double
 #mkdir $workdir
 cd $workdir
 
-# 0. Make your list of scaffolds
+# 1. Modifiy the input file by repeating the phased information twice
 
-scf=($(cat scaffolds.txt))
+head Puffinus.auto.nPP.maxmiss80.chromopainter.inp -n 3 > Puffinus_double.chromopainter.inp 
+tail Puffinus.auto.nPP.maxmiss80.chromopainter.inp -n +4 >> Puffinus_double.chromopainter.inp
+tail Puffinus.auto.nPP.maxmiss80.chromopainter.inp -n +4 >> Puffinus_double.chromopainter.inp
 
-tail scf7180000013763.chromopainter.inp -n +4
+#In the idfile repeat rows at the end, 1st set with ind names, 2nd set with popnames; in the popfile, use the pops as donors, the inds as targets
+#nano Puffinus.auto.nPP.maxmiss80.idfile.txt
+#nano Puffinus.auto.nPP.maxmiss80.popfile.txt
