@@ -18,6 +18,8 @@ HIGH <- count_mutation[count_mutation$RISK=="HIGH",]
 LOW <- count_mutation[count_mutation$RISK=="LOW",]
 MODERATE <- count_mutation[count_mutation$RISK=="MODERATE",]
 
+HIGH$POP<- c("Pyel", "Pyel", "Cab", "Cab", "Pit", "Men", "Men", "Men", "Mal", "Cab", "Pyel", "Pyel", "Mal", "Pit", "Pit", "Mal", "Mal", "Mal", "Men", "Pit", "Mal", "Mal", "Mal", "Mal", "Pit", "Mal", "Mal", "Mal", "Men", "Men", "Pyel", "Pyel")
+
 # And plot:
 
 png("snpEff.mac2.HIGH.noPP.png", width=2500, height=1000, res=150)
