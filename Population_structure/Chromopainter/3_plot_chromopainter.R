@@ -43,11 +43,12 @@ library(grid)
 setwd("/home/guillem/Documentos/TFM/chromopainter")
 chunklengths <- as.data.frame(read.table("Boxplot_chunklengths.csv", header=T, sep=","))
 
-pdf("boxplot_Mallorca.chunklengths.pdf", width=5, height=7.5)
-ggplot(chunklengths, aes(x=POP, y=Mallorca, fill=POP)) + geom_boxplot() +
+pdf("boxplot_Cabrera.chunklengths.pdf", width=5, height=7.5)
+ggplot(chunklengths, aes(x=POP, y=Cabrera, fill=POP)) + geom_boxplot() +
     scale_x_discrete(limits=c("Pyel","Menorca","Cabrera","Mallorca","Pitiuses")) +
     scale_fill_manual(values = c("#C34632", "#8B0001", "#789FF2", "#FF8532", "#0052A2")) + theme_classic() +
-    geom_jitter(shape=16, position=position_jitter(0.1)) + theme(legend.position="none") + ylab ("Length of chunks inherited from Mallorca (cM)") + theme(axis.text = element_text(size = 12.5), axis.title=element_text(size=18))
+    geom_jitter(shape=16, position=position_jitter(0.1)) + theme(legend.position="none") + ylab ("Length of chunks inherited from Cabrera (cM)") + theme(axis.text = element_text(size = 12.5), axis.title=element_text(size=18)) +
+    ylim(5,9.2)
     
                     
 dev.off()
