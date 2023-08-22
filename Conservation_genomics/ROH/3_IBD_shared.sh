@@ -33,3 +33,35 @@ done
 echo "Intersect commands completed!"
 
 rm *intersect*
+
+#--------------------------------------------------------------
+
+while IFS= read -r line; do
+    fields=($line)  # Split the line into fields
+
+    col10="${fields[9]}"
+    col11="${fields[10]}"
+
+    if [[ $col10 == "0/1"* && $col11 == "0/1"* ]]; then
+        col10="0/0${col10:3}"
+    elif [[ $col10 == "0/1"* && $col11 == "0/0"* ]]; then
+        col10="0/0${col10:3}"
+    elif [[ $col10 == "0/1"* && $col11 == "1/1"* ]]; then
+        :
+    elif [[ $col10 == "0/0"* && $col11 == "0/0"* ]]; then
+        :
+    elif [[ $col10 == "0/0"* && $col11 == "0/1"* ]]; then
+        :
+    elif [[ $col10 == "0/0"* && $col11 == "1/1"* ]]; then
+        col10="0/1${col10:3}"
+    elif [[ $col10 == "1/1"* && $col11 == "0/0"* ]]; then
+        col10="0/1${col10:3}"
+    elif [[ $col10 == "1/1"* && $col11 == "0/1"* ]]; then
+        col10="0/1${col10:3}"
+    elif [[ $col10 == "1/1"* && $col11 == "1/1"* ]]; then
+        :
+    fi
+
+    echo "$col10"
+done < prova.vcf > prova.2.vcf
+
