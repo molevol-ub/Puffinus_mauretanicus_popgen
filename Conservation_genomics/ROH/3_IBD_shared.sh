@@ -15,7 +15,7 @@ for ((i=0; i<${#inds[@]}; i++)); do
         if [ ! -f "$output_file" ]; then
             echo "Running bedtools intersect for $ind1 and $ind2"
             bedtools intersect -a $ind1.bed -b $ind2.bed > "$output_file"
-            vcftools --gzvcf $VCF --indv $ind1 --indv $ind2 --bed $output_file --het --out $ind1.$ind2
+            vcftools --gzvcf $VCF --indv $ind1 --indv $ind2 --bed $output_file --window-pi 25000 --out $ind1.$ind2
         else
             echo "Skipping $ind1 and $ind2, output file already exists: $output_file"
         fi
