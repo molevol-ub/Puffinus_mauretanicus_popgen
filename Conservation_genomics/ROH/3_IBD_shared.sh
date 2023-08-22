@@ -65,3 +65,13 @@ while IFS= read -r line; do
     echo "$col10"
 done < prova.vcf > prova.2.vcf
 
+grep -v "#" prova.ALT78.COP1.recode.vcf > prova.vcf
+grep "#" prova.ALT78.COP1.recode.vcf > ALT78.COP1.vcf
+cut -f 1,2,3,4,5,6,7,8,9 prova.vcf > prova
+mv prova prova.vcf
+paste prova.vcf prova.2.vcf >> ALT78.COP1.vcf
+cut -f 1,2,3,4,5,6,7,8,9,10 ALT78.COP1.vcf >prova.vcf
+mv prova.vcf ALT78.COP1.vcf
+
+VCF=ALT78.COP1.vcf
+plink --vcf $VCF --double-id --allow-extra-chr --set-missing-var-ids @:# -indep-pairwise 50 10 0.1 --homozyg-window-snp 100 --homozyg-window-het 1 --homozyg-window-threshold 0.05 --homozyg-snp 25 --homozyg-kb 100 --homozyg-density 50 --homozyg-gap 1000 --homozyg-het 750 --out prova.ALT78.COP1
