@@ -1,4 +1,12 @@
 #!/bin/bash
+#$ -cwd
+#$ -R y
+#$ -e roh_plink.err
+#$ -o roh_plink.out
+#$ -q h13.q
+#$ -pe ompi255h13 12
+#$ -V                    #export environment var
+#$ -N ROH_plink             #name Job
 
 # List of names
 inds=("ALT78" "CZA11" "ILA13" "ILA2" "PORQ" "TZE1" "M8" "M1" "M5" "M20" "M4" "G3" "M2" "M3" "M18" "M13" "M19" "M14" "M12" "M11" "M17" "M10" "M21" "G12" "G9" "G10" "G11" "G14" "G15" "M16" "G4" "M6" "COP1" "LT2")
