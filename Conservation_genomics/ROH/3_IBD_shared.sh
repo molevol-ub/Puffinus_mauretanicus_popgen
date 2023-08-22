@@ -23,6 +23,7 @@ for ((i=0; i<${#inds[@]}; i++)); do
         if [ ! -f "$output_file" ]; then
             echo "Running bedtools intersect for $ind1 and $ind2"
             bedtools intersect -a $ind1.bed -b $ind2.bed > "$output_file"
+            touch $ind1.$ind2.intersect.bed
             
             vcftools --gzvcf $VCF --bed $output_file --indv $ind1 --indv $ind2 --recode --out prova.$ind1.$ind2
             
