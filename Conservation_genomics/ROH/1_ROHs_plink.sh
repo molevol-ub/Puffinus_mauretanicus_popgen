@@ -43,4 +43,5 @@ name=Puffinus_std
 	
 # 2. Run ROH calculation
 	
-plink --vcf Puffinus_ROHs.vcf.gz --double-id --allow-extra-chr --set-missing-var-ids @:# --homozyg --out $name
+plink --vcf $VCF --double-id --allow-extra-chr --set-missing-var-ids @:# -indep-pairwise 50 10 0.1 --homozyg-window-snp 100 --homozyg-window-het 1 --homozyg-window-threshold 0.05 --homozyg-snp 25 --homozyg-kb 100 --homozyg-density 50 --homozyg-gap 1000 --homozyg-het 750 --out $name
+
