@@ -41,7 +41,7 @@ for ((i=0; i<${#inds[@]}; i++)); do
                 elif [[ $col10 == "0/1"* && $col11 == "0/0"* ]]; then
                     col10="0/0${col10:3}"
                 elif [[ $col10 == "0/1"* && $col11 == "1/1"* ]]; then
-                    :
+                    col10="1/1${col10:3}"
                 elif [[ $col10 == "0/0"* && $col11 == "0/0"* ]]; then
                     :
                 elif [[ $col10 == "0/0"* && $col11 == "0/1"* ]]; then
@@ -51,7 +51,7 @@ for ((i=0; i<${#inds[@]}; i++)); do
                 elif [[ $col10 == "1/1"* && $col11 == "0/0"* ]]; then
                     col10="0/1${col10:3}"
                 elif [[ $col10 == "1/1"* && $col11 == "0/1"* ]]; then
-                    col10="0/1${col10:3}"
+                    :
                 elif [[ $col10 == "1/1"* && $col11 == "1/1"* ]]; then
                     :
                 fi
