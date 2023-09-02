@@ -1,0 +1,5 @@
+date
+
+export PATH=$PATH:~/programari/cactus-bin-v2.5.1/bin
+source activate py39
+cd /users-d3/jferrer/gizquierdo/TFM/Cactus/Cactus
