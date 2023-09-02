@@ -18,7 +18,7 @@ cd /users-d3/jferrer/gizquierdo/TFM/Cactus/Cactus
 
 # 1. Convert hal to maf
 
-
+hal2maf 363-avian-2020.hal 363-avian-2020.maf
 
 # 2. Run phyloFit
 # Mostly following Patrick F. Sullivan et al. (2023) - Science on mammals  
