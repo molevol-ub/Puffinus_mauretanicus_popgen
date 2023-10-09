@@ -28,3 +28,8 @@ Dsuite Dtrios -n Puffinus.Pit_out -t Puffinus.Pit_out.nwk $VCF Puffinus_list.txt
 echo "2nd run completed"
 
 cut -f 2 Puffinus_list.txt | uniq > plot_order.txt
+
+# 2. Plot, limiting the highest value to the maximum D value and f4 value respectively
+
+ruby plot_d.rb Puffinus_list_Puffinus.Cabrera_out_BBAA.txt plot_order.txt 0.0121143 Puffinus.Cab_out.BBAA.D.svg
+ruby plot_f4ratio.rb Puffinus_list_Puffinus.Cabrera_out_BBAA.txt plot_order.txt 0.047654 Puffinus.Cab_out.BBAA.f4ratio.svg
