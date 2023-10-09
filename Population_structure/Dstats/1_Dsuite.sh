@@ -32,4 +32,7 @@ cut -f 2 Puffinus_list.txt | uniq > plot_order.txt
 # 2. Plot, limiting the highest value to the maximum D value and f4 value respectively
 
 ruby plot_d.rb Puffinus_list_Puffinus.Cabrera_out_BBAA.txt plot_order.txt 0.0121143 Puffinus.Cab_out.BBAA.D.svg
-ruby plot_f4ratio.rb Puffinus_list_Puffinus.Cabrera_out_BBAA.txt plot_order.txt 0.047654 Puffinus.Cab_out.BBAA.f4ratio.svg
+ruby plot_f4ratio.rb Puffinus_list_Puffinus.Cabrera_out_BBAA.txt plot_order.txt 0.0903772 Puffinus.Cab_out.BBAA.f4ratio.svg
+
+ruby plot_d.rb Puffinus_list_Puffinus.Pit_out_BBAA.txt plot_order.txt 0.0121143 Puffinus.Pit_out.BBAA.D.svg
+ruby plot_f4ratio.rb Puffinus_list_Puffinus.Pit_out_BBAA.txt plot_order.txt 0.0903772 Puffinus.Pit_out.BBAA.f4ratio.svg
