@@ -18,6 +18,8 @@
 #           -m [int] --> nº of iterations between logs
 #           -l [int] --> MCMC chain length
 #           -x, -o [string] --> name of the ouput
+#           -s, --starting-tree FILENAME --> name of the starting tree file (Newick or Nexus)
+#           -w, --weight WEIGHT --> Relative weight of topology operator - if set to 0, tree topology will be fixed
 
 ruby /path/to/snapp_prep.rb -v scfE_downsized.maxmiss100.vcf -c constraints_taxa.normal.txt -t Puffinus_subset.csv \
--m 1000 -l 500000 -x scfE_downsized.maxmiss100.normal.xml -o scfE_downsized.maxmiss100.normal
+-m 1000 -l 500000 -s Puffinus.tre -w 0 -x scfE_downsized.maxmiss100.normal.xml -o scfE_downsized.maxmiss100.normal
