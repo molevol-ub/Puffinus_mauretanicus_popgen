@@ -1,0 +1,6 @@
+((Pmau:0.015678,Calonectris_borealis:0.0147531)birdAnc361:0.01,Pelecanoides_urinatrix:0.0235188)birdAnc274;
+
+Pmau    /users-d3/jferrer/gizquierdo/TFM/Cactus/genomes/Pmau.fa
+Calonectris_borealis    /users-d3/jferrer/gizquierdo/TFM/Cactus/genomes/Calonectris_borealis.fa
+Pelecanoides_urinatrix  /users-d3/jferrer/gizquierdo/TFM/Cactus/genomes/Pelecanoides_urinatrix.fa
+birdAnc274      /users-d3/jferrer/gizquierdo/TFM/Cactus/genomes/birdAnc274.fa
