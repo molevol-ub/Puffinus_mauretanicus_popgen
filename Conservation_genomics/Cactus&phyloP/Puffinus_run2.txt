@@ -1,0 +1,5 @@
+(birdAnc361:0.01,Pelecanoides_urinatrix:0.0235188)birdAnc274;
+
+birdAnc361      /users-d3/jferrer/gizquierdo/TFM/Cactus/genomes/birdAnc361.fa
+Pelecanoides_urinatrix  /users-d3/jferrer/gizquierdo/TFM/Cactus/genomes/Pelecanoides_urinatrix.fa
+birdAnc274      /users-d3/jferrer/gizquierdo/TFM/Cactus/genomes/birdAnc274.fa
