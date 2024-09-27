@@ -22,7 +22,7 @@ import random
 random.seed(12345)
 boots = dadi.Misc.bootstraps_from_dd_chunks(chunks, Nboot, pop_ids, ns, polarized=False)
 for i in range(len(boots)):
-  boots[i].to_file('Pmes.boots_{0}.fs'.format(str(i)))
+  boots[i].to_file('Pmed.boots_{0}.fs'.format(str(i)))
 
 # 4. Save the boots
 import os
