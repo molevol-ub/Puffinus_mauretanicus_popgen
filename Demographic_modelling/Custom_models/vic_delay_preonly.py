@@ -8,15 +8,13 @@ from dadi import Numerics, Integration, PhiManip, Spectrum
 
 def vic_delay_preonly(params, ns, pts):
     """
-    nu0, Tb, s, nu1, nu2, Tpre, Tmig, m12, m21 = params
+    nu0, Tb, s, Tpre, Tmig, m12, m21 = params
     
     Split into two vicariant populations, with asymmetrical migration after some time has passed post split. The split is preceeded by a population size change.
 
     nu0: Size after bottleneck
     Tb: Time in the past of bottleneck before split (in units of 2*Na generations)
     s: Size of pop 1 after split. (Pop 2 has size 1-s.)
-    nu1: Final size of population 1.
-    nu2: Final size of population 2.
     Tpre: Time in the past after split but before migration (in units of 2*Na generations) 
     Tmig: Time in the past after migration starts (in units of 2*Na generations) 
     m12: Migration from pop 2 to pop 1 (2*Na*m12)
