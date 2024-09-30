@@ -7,11 +7,12 @@ This git repository contains those scripts used during the population genomics a
 
 # Structure
 
-1. **SNP_calling_mitogenome**: SNP calling pipeline which uses freebayes - adapted for mitogenomic data.
-2. **Population_structure**: includes those analyses performed to visualize population structure within *P. mauretanicus* and *P. yelkouan*. Among these, we include: PCAs, Struct-f4, TreeMix and haplotype genealogy graphs for mitogenomes (using Fitchi).
-3. **Dated_phylogeny**: inference of time-callibrated species trees using SNAPP.
-4. **Demographic_modelling**: scripts for demographic modelling using dadi, alongside custom models.
-5. **Genome_scans**: performance of genome-wide scans for signatures of selection, including detailed analyses of the main outlier windows.
-6. **Conservation_genomics**: scripts to calculate heteroziogsity, LROHs, ...
-7. **Forward_simulations**: scripts to use SLiM simulations to investigate the plausibility of mito-nuclear discordance in our model and to assess the effects of migration/demography in the species heterozygosity/FROH.
-8. **Others**: smaller tasks, such as finding fixed differences between populations, calculating the SFS, ...
+1. **SNP_calling**: SNP calling pipeline for WGS resequencing data that uses a combination of freebayes and GATK HaplotypeCaller.
+2. **SNP_calling_mitogenome**: SNP calling pipeline which uses freebayes - adapted for mitogenomic data.
+3. **Population_structure**: includes those analyses performed to visualize population structure within *P. mauretanicus* and *P. yelkouan*. Among these, we include: PCAs, Struct-f4, TreeMix and haplotype genealogy graphs for mitogenomes (using Fitchi).
+4. **Dated_phylogeny**: inference of time-callibrated species trees using SNAPP.
+5. **Demographic_modelling**: scripts for demographic modelling using dadi, alongside custom models.
+6. **Genome_scans**: performance of genome-wide scans for signatures of selection, including detailed analyses of the main outlier windows.
+7. **Conservation_genomics**: scripts to calculate heteroziogsity, LROHs, ...
+8. **Forward_simulations**: scripts to use SLiM simulations to investigate the plausibility of mito-nuclear discordance in our model and to assess the effects of migration/demography in the species heterozygosity/FROH.
+9. **Others**: smaller tasks, such as finding fixed differences between populations, calculating the SFS, ...
