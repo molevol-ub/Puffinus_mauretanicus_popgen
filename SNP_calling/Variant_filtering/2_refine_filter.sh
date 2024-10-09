@@ -1,19 +1,14 @@
 #!/bin/bash
 #$ -R y
-#$ -N refine_filter
-#$ -e refine_filter.err.txt
-#$ -o refine_filter.out.txt
 #$ -cwd
-#$ -q h12.q
-#$ -pe ompi128h12 12
 
 source $HOME/.profile
 
 ### Script to filter and refine vcfs ###
-MASTER=/users-d3/jferrer/pmau_popgen
-reference=/users-d3/jferrer/gizquierdo/TFG/angsd_SNP_calling/genome.fa
-WORKING_DIR=/users-d3/jferrer/gizquierdo/TFG/chr_split/vcfs/auto
-raw_vcf=/users-d3/jferrer/gizquierdo/TFG/chr_split/vcfs/auto/Puffinus_intersect_raw.auto.recode.vcf
+MASTER=/set/your/master/path
+reference=/path/to/genome.fa
+WORKING_DIR=/set/your/vcf_folder/path
+raw_vcf=/path/to/Puffinus_intersect_raw.auto.recode.vcf
 DATASET=Puffinus
 
 
