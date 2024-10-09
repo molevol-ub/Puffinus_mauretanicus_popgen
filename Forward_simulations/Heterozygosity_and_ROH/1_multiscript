@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# Script to run the forward simulations using SLiM and different sets of demographic parameters and migration rates
+
+
+#### BASIC MODEL ####
+
+slim -d migrate=1 -d migrgen=12 -d migrind=1 Future_sim.slim > Basic_1_migr.txt
+
+slim -d migrate=10 -d migrgen=6 -d migrind=5 Future_sim.slim > Basic_10_migr.txt
+
+slim -d migrate=100 -d migrgen=1 -d migrind=8 Future_sim.slim > Basic_100_migr.txt
+
+slim -d migrate=0 -d migrgen=100 -d migrind=0 Future_sim.slim > Basic_no_migr.txt
+
+############################################################################################
+
+#### BEST MODEL ####
+slim -d migrate=1 -d migrgen=12 -d migrind=1 Future_sim_best.slim > Best_1_migr.txt
+
+slim -d migrate=10 -d migrgen=6 -d migrind=5 Future_sim_best.slim > Best_10_migr.txt
+
+slim -d migrate=100 -d migrgen=1 -d migrind=8 Future_sim_best.slim > Best_100_migr.txt
+
+slim -d migrate=0 -d migrgen=100 -d migrind=0 Future_sim_best.slim > Best_no_migr.txt
+
+############################################################################################
+
+#### INTERMEDIATE MODEL ####
+
+slim -d migrate=1 -d migrgen=12 -d migrind=1 Future_sim.intermediate.slim > Int_1_migr.txt
+
+slim -d migrate=10 -d migrgen=6 -d migrind=5 Future_sim.intermediate.slim > Int_10_migr.txt
+
+slim -d migrate=100 -d migrgen=1 -d migrind=8 Future_sim.intermediate.slim > Int_100_migr.txt
+
+slim -d migrate=0 -d migrgen=100 -d migrind=0 Future_sim.intermediate.slim > Int_no_migr.txt
+
+############################################################################################

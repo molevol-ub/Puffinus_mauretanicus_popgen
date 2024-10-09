@@ -1,0 +1,127 @@
+# SLiM script to model the evolution of a 25 Gb fragment of Balearic shearwater genomic DNA under the expected demographic parameters if bycatch is reduced, using the current heterozysgsity and Fst as starting points
+
+initialize() {
+	initializeSLiMModelType("nonWF"); //nonWF model with overlapping generation, age based mortality and reproduction
+	initializeTreeSeq(simplificationRatio=10); //TreeSeq recording to work without mutations 
+	
+	//Initial age ditribution
+	
+	defineConstant("Age_class", c(1099, 770, 700, 635, 578, 525, 477, 433, 394, 358, 325, 296, 268, 244, 222, 201, 183, 166, 159, 144, 131, 119, 108, 98, 89, 81, 74, 68, 61, 56, 51, 46, 42, 38, 35, 32, 29, 26, 24, 21, 19, 18, 16, 15, 13, 12, 11, 10, 9, 7, 7, 6, 6, 5, 5, 4, 4, 3, 3, 3, 3, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1));
+	//Age based survival rate
+	defineConstant("L", c(1.0, 0.691, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.896, 0.00));
+	
+	//Age based reproductive probability
+	defineConstant("parentsprob", c(0.00, 0.00, 0.00, 0.0106595658372, 0.08634248328132, 0.15314242919444, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.35531886124, 0.00));
+	
+	defineConstant("outpath", FolderPath + migrate + ".tree");
+	
+	defineConstant("Kp1", 88000); // carrying capacity for Yelkoan population (Mauritaunicus doesn't have a carrying capacity)
+	
+	initializeMutationRate(0); //TreeSeq works without mutations
+	initializeMutationType("m1", 1.0, "f", 0.0); //nuclear mutation
+	
+	initializeGenomicElementType("g1", m1, 1.0); //nuclear genome
+	
+	initializeGenomicElement(g1, 0, 25000000); //nuclear genome
+	
+	initializeRecombinationRate(1e-8, 25000000); //recombination rate
+}
+
+
+1 late() {
+	//Read the burn-in file
+	sim.readFromPopulationFile( FolderPath + "tree_fstout");
+	//Yelkoan is p1
+	//Mauritanicus is p2 
+	
+	for (age in seq(0,49)){
+		inds=p2.sampleIndividuals(Age_class[age]);
+		inds.age=(age+1);}
+	catn("Generation,p1popsize,p2popsize");
+}
+
+//migration
+182300: 182800 first() {
+	if ((sim.cycle - 182300) % migrgen != 0)
+		return;
+	p1migr=p1.sampleIndividuals(migrind, minAge=3, maxAge=49);
+	p2.takeMigrants(p1migr);
+}
+
+
+//Reproduction
+1: 182800 reproduction() {
+	
+	//Yelkoan population (p1) reproduces normally
+	parent1p1=p1.sampleIndividuals(1);
+	parent2p1=p1.sampleIndividuals(1);
+	p1.addCrossed(parent1p1, parent2p1);
+	
+	
+	
+	adults= p2.individuals[p2.individuals.age >= 3]; //only individuals older than 2 are selected for reproduction 	
+	parents = sample(adults, adults.size());
+	// draw monogamous pairs and generate littersindividualCount
+	if (adults.size() >= 2){
+		for (i in seq(0, parents.size() - 2, by=2))
+		{
+			parent1 = parents[i];
+			parent2 = parents[i + 1];
+			parent1.age;
+			parent2.age;
+			parent1prob=parentsprob[parent1.age];
+			parent2prob=parentsprob[parent2.age];
+			
+			parentsfert=((parent1prob+parent2prob)/2);
+			
+			sium=runif(1, 0, 1000);
+			if (sium <= 1000*parentsfert)
+				p2.addCrossed(parent1, parent2);
+		}}
+	self.active = 0;
+}
+
+
+182300:182800 late () {
+	catn((sim.cycle - 182300) + "," + p1.individualCount +  "," + p2.individualCount);
+	possiblematingadults= p2.individuals[p2.individuals.age > 2];
+	if (possiblematingadults.size() < 2){
+		sim.simulationFinished();
+	}}
+
+182325 late () {
+	
+	sim.treeSeqOutput(asString(outpath + (sim.cycle - 182300)));
+}	
+	
+
+182350 late () {
+	
+	sim.treeSeqOutput(asString(outpath + (sim.cycle - 182300)));
+}
+
+182400 late () {
+	
+	sim.treeSeqOutput(asString(outpath + (sim.cycle - 182300)));
+}
+
+182550 late () {
+	
+	sim.treeSeqOutput(asString(outpath + (sim.cycle - 182300)));
+}
+
+182800 late () {
+	
+	sim.treeSeqOutput(asString(outpath + (sim.cycle - 182300)));
+	sim.simulationFinished();
+}
+
+1 : 182800 late() {
+	// life table based individual mortality
+	p1.fitnessScaling=(Kp1/p1.individualCount);
+	
+	indsp2 = p2.individuals;
+	ages = indsp2.age;
+	survival = L[ages];
+	indsp2.fitnessScaling = survival;
+}

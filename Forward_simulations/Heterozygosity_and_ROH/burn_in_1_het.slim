@@ -1,0 +1,43 @@
+# Script to run the first burn-in for the forward SLiM simulations to reach the expected heterozygosity within our population
+
+initialize() {
+	initializeSLiMModelType("nonWF");
+	initializeTreeSeq(simplificationRatio=NULL);
+	defineConstant("Kp0", 88000); // carrying capacity for p0 population
+	
+	initializeMutationRate(0);
+	initializeMutationType("m1", 1.0, "f", 0.0); //nuclear mutations
+	
+	initializeGenomicElementType("g1", m1, 1.0); //nuclear genome
+	
+	initializeGenomicElement(g1, 0, 25000000);
+	
+	initializeRecombinationRate(1e-8, 25000000);
+}
+
+1 early() {
+	sim.addSubpop("p0", 88000);
+}
+
+
+//Reproduction
+1: 180900 reproduction() {
+	parent1=p0.sampleIndividuals(1);
+	parent2=p0.sampleIndividuals(1);
+	
+	p0.addCrossed(parent1, parent2);
+}
+
+1 : 180900 early() {
+	p0.fitnessScaling = Kp0 / p0.individualCount;
+}
+
+1 :180900 late() {
+	if (sim.cycle % 50 != 0)
+		return;
+	catn(p0.individualCount + " " +  sim.cycle);		
+}
+
+180900 late() {
+	sim.treeSeqOutput(Folderpath + "tree_hetout");
+}

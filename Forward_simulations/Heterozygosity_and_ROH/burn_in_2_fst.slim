@@ -1,0 +1,82 @@
+# Script to run the second burn-in for the forward SLiM simulations to reach the expected Fst between Yelkouan and Balearic shearwaters while mantaining the expected heterozygosity
+
+initialize() {
+	initializeSLiMModelType("nonWF");
+	initializeTreeSeq(simplificationRatio=5);
+	
+	defineConstant("Kp1", 88000); // carrying capacity for p1 population
+	defineConstant("Kp2", 10000); // carrying capacity for p2 population
+	
+	if (exists("slimgui")){
+		defineConstant("seed", 1);
+	}
+	
+	setSeed(seed);
+	
+	initializeMutationRate(0);
+	initializeMutationType("m1", 1.0, "f", 0.0); //nuclear mutations	
+	initializeGenomicElementType("g1", m1, 1.0); //nuclear genome
+	
+	initializeGenomicElement(g1, 0, 25000000);
+	initializeRecombinationRate(1e-8, 25000000);
+}
+
+1 early() {
+	sim.readFromPopulationFile(Folderpath + "tree_hetout");
+}
+
+//Population split from p0 to p1 and p2
+1 early(){
+	sim.addSubpop("p1", 0);
+	sim.addSubpop("p2", 0);
+	
+	p2migrants=p0.sampleIndividuals(10000);
+	p1migrants=p0.sampleIndividuals(78000);
+	
+	p1.takeMigrants(p1migrants);
+	p2.takeMigrants(p2migrants);
+	
+	p0.removeSubpopulation();
+
+}
+
+
+//Reproduction
+1: 182300 reproduction() {
+	femalep1= p1.sampleIndividuals(1);
+	malep1= p1.sampleIndividuals(1);
+	p1.addCrossed(femalep1, malep1);
+	
+	femalep2= p2.sampleIndividuals(1);
+	malep2= p2.sampleIndividuals(1);
+	p2.addCrossed(femalep2, malep2);
+}
+
+//Migration
+1: 182300 first() {
+	if (sim.cycle % 4 != 0)
+		return;
+	
+	migr=p1.sampleIndividuals(3);
+	p2.takeMigrants(migr);
+		
+		}
+
+1 : 182300 early () {
+	p1.fitnessScaling = Kp1 / p1.individualCount;
+	
+	p2.fitnessScaling = Kp2 / p2.individualCount;
+}
+
+
+1 : 182300 late() {
+	
+	if (sim.cycle % 50 != 0)
+		return;
+	catn(sim.cycle + " " + p1.individualCount + " " + p2.individualCount);
+}
+
+182300 late() {
+	sim.treeSeqOutput(Folderpath + "tree_fstout" + seed);
+}
+
