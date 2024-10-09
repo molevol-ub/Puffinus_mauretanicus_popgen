@@ -1,12 +1,14 @@
-# Calculate cumulative scaffold length of those scaffolds belonging to chrZ: 65% coverage_ratio, 60% hit_ratio (1000 best hits)
+#!/usr/bin/python
 
-# In the case of autosomes these are: 80% - 120% coverage ratio & 20% hit-ratio (1000 best hits)
+# Calculate cumulative scaffold length of those scaffolds belonging to chrZ: we considered those with over 65% coverage_ratio and 60% hit_ratio
+
+# In the case of autosomes these thresholds are: 80% - 120% coverage ratio & 20% hit-ratio
 
 import re
 
 # 1 Choose the scaffolds
 
-scaffolds_file=open("/users-d3/jferrer/gizquierdo/TFG/chr_split/vcfs/auto/selected_scaffolds.auto.csv")
+scaffolds_file=open("/set/your/path/vcfs/auto/selected_scaffolds.auto.csv")
 
 scaffold_list=[]
 
@@ -20,9 +22,9 @@ for line in scaffolds_file:
 
 scaffolds_file.close()
 
-# 2 Comparar amb el genoma de cigonya
+# 2 Compare with the penguin genome
 
-scaffolds_file=open("/users-d3/jferrer/gizquierdo/TFG/chr_split/vcfs/auto/selected_scaffolds_cic.auto.csv")
+scaffolds_file=open("/set/your/path/vcfs/auto/selected_scaffolds_sphen.auto.csv")
 
 scaffold_def=[]
 
@@ -40,8 +42,8 @@ scaffolds_file.close()
 
 # 3 Extract and sum scaffold length
 
-info_file=open("/users-d3/jferrer/gizquierdo/TFG/chr_split/ther_genome/final_results.1000.txt")
-bed_file=open("/users-d3/jferrer/gizquierdo/TFG/chr_split/vcfs/auto/auto.bed", "w")
+info_file=open("/set/your/path/sphen_genome/final_results.1000.txt")
+bed_file=open("/set/your/path/vcfs/auto/auto.bed", "w")
 
 for line in info_file:
 	
