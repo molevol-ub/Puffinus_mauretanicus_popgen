@@ -1,0 +1,170 @@
+# Script to run the forward simulations of mtDNA that approximate the last 1My of demographic history of Mediterranean Puffinus using SLiM
+
+initialize() {
+	initializeSLiMModelType("nonWF");	
+	initializeTreeSeq();
+	
+	defineConstant("Kp0", 35000); // carrying capacity for p0 population
+	defineConstant("Kp10", 7000); // carrying capacity for p10 population and p13
+	defineConstant("Kp20", 14000); // carrying capacity for p20 population and p23
+	defineConstant("Kp11", 35000); // carrying capacity for p11 population
+	defineConstant("Kp21", 70000); // carrying capacity for p21 population
+	defineConstant("Kp12", 4200); // carrying capacity for p12 population
+	defineConstant("Kp22", 140); // carrying capacity for p22 population
+	
+	initializeMutationRate(0);
+	initializeMutationType("m1", 1.0, "f", 0.0); //mitochondrial mutations
+	m1.convertToSubstitution = T;
+	
+	initializeGenomicElementType("g1", m1, 1.0); //mitochondrial genome
+	
+	initializeGenomicElement(g1, 0, 16000); //mitochondrial genome
+	
+	initializeRecombinationRate(0, 16000); //mitochondrial genome
+}
+
+
+1 early() {
+	sim.addSubpop("p0", 50000);
+}
+
+//TEST////uncomment to test the sole female inheritance of the genome//
+//1 : 2000 early(){
+//if (sim.cycle % 10 != 0)
+//		return;	
+//	males = p1.individuals[p1.individuals.sex == "M"];
+//	males.genome1.addNewDrawnMutation(m3, 15000);}
+
+
+//Reproduction
+1: 235000 reproduction() {
+	femalep0=p0.sampleIndividuals(1);
+	
+	gen1p0 = femalep0.genome1;
+	
+	offspring = p0.addRecombinant(gen1p0, NULL, NULL, NULL, NULL, NULL);
+}
+
+1 : 235000 early() {
+	p0.fitnessScaling = Kp0 / p0.individualCount;
+}
+///////////////////////////////////////////
+// Population split from p0 to p1 and p2 //
+///////////////////////////////////////////
+
+235000 late(){
+	
+	sim.addSubpop("p1",0);
+	sim.addSubpop("p2",0);
+	
+	migrantsnum = p0.individuals.size();
+	
+	migrantsp1 = p0.sampleIndividuals(asInteger(round(migrantsnum/2)));	
+	migrantsp2 = p0.sampleIndividuals(asInteger(round(migrantsnum/2)));
+	
+	p1.takeMigrants(migrantsp1);
+	p2.takeMigrants(migrantsp2);
+	
+	p0.removeSubpopulation();
+	
+}
+
+235001: 800000 reproduction() {
+	femalep1=p1.sampleIndividuals(1);
+	gen1p1 = femalep1.genome1;
+	offspring = p1.addRecombinant(gen1p1, NULL, NULL, NULL, NULL, NULL);
+	
+	femalep2=p2.sampleIndividuals(1);
+	gen1p2 = femalep2.genome1;
+	offspring = p2.addRecombinant(gen1p2, NULL, NULL, NULL, NULL, NULL);
+
+}
+
+235001 : 670000 early() {
+	p1.fitnessScaling = Kp10 / (p1.individualCount);
+
+	p2.fitnessScaling = Kp20 / (p2.individualCount);
+}
+
+//////////////////////////////////////////////////////////////////////
+// Fist migration and population expansion during last interglacial //
+//////////////////////////////////////////////////////////////////////
+
+670000 : 685000 early() {
+	p2migr=p2.sampleIndividuals(0.75, minAge=3, maxAge=49);
+	p1.takeMigrants(p2migr);
+	
+	p1migr=p1.sampleIndividuals(0.17, minAge=3, maxAge=49);
+	p2.takeMigrants(p1migr);
+}
+
+670000 : 685000 early() {
+	p1.fitnessScaling = Kp11 / (p1.individualCount);
+
+	p2.fitnessScaling = Kp21 / (p2.individualCount);	
+}
+
+////////////////////////////////////////////////////////////////
+// Isolation and population contraction during glacial period //
+////////////////////////////////////////////////////////////////
+685000 : 794000 early() {
+	p1.fitnessScaling = Kp12 / (p1.individualCount);
+
+	p2.fitnessScaling = Kp22 / (p2.individualCount);	
+}
+
+///////////////////////////////////////////////////////////////////////////
+// Second migration and population expansion during current interglacial //
+///////////////////////////////////////////////////////////////////////////
+
+794000 : 800000 early() {
+	p2migr=p2.sampleIndividuals(0.75, minAge=3, maxAge=40);
+	p1.takeMigrants(p2migr);
+	p1migr=p1.sampleIndividuals(0.17, minAge=3, maxAge=40);
+	p2.takeMigrants(p1migr);
+}
+
+794000 : 800000 early() {
+
+	p1.fitnessScaling = Kp10 / (p1.individualCount);
+	
+	p2.fitnessScaling = Kp20 / (p2.individualCount);
+}
+
+////////////
+// Output //
+////////////
+
+234999 late () {
+	
+	sim.treeSeqOutput(Folderpath + "shearwater_pre_split.tree");
+}
+
+665000 late () {
+	
+	sim.treeSeqOutput(Folderpath + "shearwater_pre_LIM.tree");
+}
+
+680000 late () {
+	
+	sim.treeSeqOutput(Folderpath + "shearwater_LIM.tree");
+}
+
+780000 late () {
+	
+	sim.treeSeqOutput(Folderpath + "shearwater_LGM.tree");
+}
+
+795000 late () {
+	
+	sim.treeSeqOutput(Folderpath + "shearwater_Holocene.tree");
+}
+
+
+
+800000 late () {
+	
+	sim.treeSeqOutput("/cluster_data/home/genomic/slimulations/birds/shearwater_final.tree_2");
+	sim.simulationFinished();
+}
+
