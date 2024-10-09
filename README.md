@@ -7,7 +7,7 @@ This git repository contains those scripts used during the population genomics a
 
 # Structure
 
-1. **SNP_calling**: SNP calling pipeline for WGS resequencing data that uses a combination of freebayes and GATK HaplotypeCaller.
+1. **SNP_calling**: SNP calling pipeline for WGS resequencing data that uses a combination of freebayes and GATK HaplotypeCaller. Includes VCF filtering and phasing.
 2. **SNP_calling_mitogenome**: SNP calling pipeline which uses freebayes - adapted for mitogenomic data.
 3. **Population_structure**: includes those analyses performed to visualize population structure within *P. mauretanicus* and *P. yelkouan*. Among these, we include: PCAs, Struct-f4, TreeMix and haplotype genealogy graphs for mitogenomes (using Fitchi).
 4. **Dated_phylogeny**: inference of time-callibrated species trees using SNAPP.
